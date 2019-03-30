@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Mapping DTD Version 1.0//EN"
+        "http://castor.org/mapping.dtd">
+<mapping>
+    <class name="com.hzy.modules.oxm.entity.my_order.MyOrder">
+    <map-to xml="MyOrder"/>
+
+    <!-- property name is _ref but get-method name is getReference -->
+    <field name="Reference" type="java.lang.String">
+            <bind-xml name="REFERENCE" node="attribute"/>
+        </field>
+        <field name="Total"  type="float" get-method="getTotalPrice" >
+            <bind-xml name="total-price" node="attribute"/>
+        </field>
+        <field name="ClientData" type="com.hzy.modules.oxm.entity.my_order.ClientData">
+            <bind-xml name="Client" location="CLIENTS" />
+        </field>
+        <field name="ItemsList" type="com.hzy.modules.oxm.entity.my_order.Item" collection="vector">
+            <bind-xml name="ITEM" location="ITEMS" />
+        </field>
+    </class>
+
+    <class name="com.hzy.modules.oxm.entity.my_order.ClientData">
+        <field name="Name" type="java.lang.String">
+            <bind-xml name="NAME" node="element"/>
+        </field>
+        <field name="Address" type="java.lang.String">
+            <bind-xml name="ADDRESS" node="element"/>
+        </field>
+    </class>
+
+
+    <class name="com.hzy.modules.oxm.entity.my_order.Item">
+        <field name="_reference" type="java.lang.String" direct="true">
+            <bind-xml name="reference" node="attribute"/>
+        </field>
+        <field name="_quantity" type="integer" direct="true">
+            <bind-xml name="Quantity" node="element"/>
+        </field>
+        <field name="_unitPrice" type="float" direct="true">
+            <bind-xml name="UnitPrice" node="element"/>
+        </field>
+        <field name="_description" type="string" direct="true">
+            <bind-xml name="Description" node="element"/>
+        </field>
+    </class>
+</mapping>

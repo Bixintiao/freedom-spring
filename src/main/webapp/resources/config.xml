@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu>
+	<title>统一业务管理平台</title>
+	<modules id="warehouse" name="仓库物流" >
+		<submodule id="001" name="通知单">
+			<item name="通知单1" url="./a.html" />
+			<item name="通知单2" url="./b.html" />
+			<item name="通知单3" url="./c.html" />
+			<item name="通知单4" url="./d.html" />
+		</submodule>
+		<submodule id="002" name="库存管理">
+			<item name="库存管理1" url="./a.html" />
+			<item name="库存管理2" url="./b.html" />
+			<item name="库存管理3" url="./c.html" />
+			<item name="库存管理4" url="./d.html" />
+		</submodule>
+	</modules>
+	
+	<modules id="favorite" name="我的收藏" >
+		<submodule id="001" name="最近访问">
+			<item name="最近访问1" url="./a.html" />
+			<item name="最近访问2" url="./b.html" />
+			<item name="最近访问3" url="./c.html" />
+			<item name="最近访问4" url="./d.html" />
+		</submodule>
+		<submodule id="002" name="收藏">
+			<item name="收藏1" url="./a.html" />
+			<item name="收藏2" url="./b.html" />
+			<item name="收藏3" url="./c.html" />
+			<item name="收藏4" url="./d.html" />
+		</submodule>
+		<submodule id="003" name="喜欢">
+			<item name="喜欢1" url="./a.html" />
+			<item name="喜欢2" url="./b.html" />
+			<item name="喜欢3" url="./c.html" />
+			<item name="喜欢4" url="./d.html" />
+		</submodule>
+	</modules>
+</menu>

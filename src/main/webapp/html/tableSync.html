@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../resources/components/hzy/jquery/jquery-3.3.1.min.js" ></script>
+		<style>
+			body{
+				font-size: 14px;
+			}
+			.table{
+				border: solid black 1px;
+				text-align: center;
+				border-collapse:collapse;
+			}
+			th,td{
+				width: 100px;
+				height: 30px;
+			}
+			a{
+				text-decoration: none;
+			}
+			a:hover{
+				color: orangered;
+			}
+			.btnArea{
+				width: ;
+				padding: 10px;
+			}
+			.tableField{
+				text-align: right;
+			}
+			input,select{
+				width: 120px;
+			}
+			/*#tab{
+				transform:scale(1.5,1.5);
+				// scaleX  scaleY
+			}*/
+		</style>
+	</head>
+	<body>
+		
+		
+		<div class="btnArea"><a href="javascript:void(0)" onclick="addLine()" > + </a><div>
+		<table id="tab" border="1px solid black" class="table" >
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>NAME</th>
+					<th>SEX</th>
+					<th>AGE</th>
+					<th>操作</th>
+				<tr>
+			</thead>
+			<tbody id="lineDetail" >
+				<script type="text/javascript" >
+					for(var i =0;i<=3;i++){
+						var tbodyData = '<tr seq="'+i+'" >';
+						tbodyData += "<input type='hidden' name='id_"+i+"' value='id_"+i+"' >";
+						tbodyData += "<input type='hidden' name='name_"+i+"' value='name_"+i+"' >";
+						tbodyData += "<input type='hidden' name='sex_"+i+"' value='M' >";
+						tbodyData += "<input type='hidden' name='age_"+i+"' value='age_"+i+"' >";
+						tbodyData += "<td id='td_id_"+i+"'>id_"+i+"</td><td id='td_name_"+i+"' >name_"+i+"</td><td id='td_sex_"+i+"' >sex_"+i+"</td>";
+						tbodyData += "<td id='td_age_"+i+"' >age_"+i+"</td><td><a href='javascript:void(0)' onclick='delLine(this)' > X </a></td>";
+						tbodyData += "</tr>";
+						document.write(tbodyData);
+					}
+				</script>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td>foot1</td>
+					<td>foot2</td>
+					<td>foot3</td>
+					<td>foot4</td>
+					<td><a href="javascript:void(0)" onclick="delLine(this)" > X </a></td>
+				</tr>
+			</tfoot>
+		</table>
+		
+		
+		<br>
+		<div>
+			<table>
+				<tr>
+					<td class="tableField" >id:</td>
+					<td><input name="id" modify="modify" onchange="loadValue(this)" autofocus="autofocus" /></td>
+					<td class="tableField" >name:</td>
+					<td><input name="name" modify="modify" onchange="loadValue(this)" /></td>
+				</tr>
+				<tr>
+					<td class="tableField" >sex:</td>
+					<td>
+						<select name="sex" modify="modify" onchange="loadValue(this)" >
+							<option value="DD" >--选择--</option>
+							<option value="M" >男</option>
+							<option value="F" >女</option>
+						</select>
+					<td class="tableField" >age:</td>
+					<td><input name="age" modify="modify" onchange="loadValue(this)" /></td>
+				</tr>
+			</table>
+		</div>
+		
+		
+<script type="text/javascript" >
+	
+	var maxSeq = 0;
+	var nowSeq = 0;
+	
+	$(document).ready(function(){
+		$("#tab tbody").on("click","tr",function(){
+			$("#tab tbody tr").each(function(i,v){
+				$(v).css("background-color","");
+			});
+			$(this).css("background-color","#fbffd5");
+			nowSeq = $(this).attr("seq");
+			synValue();
+		});
+		$("#tab tbody tr").each(function(i,v){
+			if(i == 0){
+				$(this).trigger("click");
+			}
+			maxSeq ++;
+			/*console.log("maxSeq:"+maxSeq+"\t data:");
+			console.log(v);*/
+		});
+	});
+	
+	
+	/* 添加行 */
+	function addLine(){
+		var lineData = "<tr seq="+maxSeq+">";
+		lineData += "<input type='hidden' name='id_"+maxSeq+"'>";
+		lineData += "<input type='hidden' name='name_"+maxSeq+"'>";
+		lineData += "<input type='hidden' name='sex_"+maxSeq+"'>";
+		lineData += "<input type='hidden' name='age_"+maxSeq+"'>";
+		lineData += "<td id='td_id_"+maxSeq+"' ></td><td id='td_name_"+maxSeq+"' ></td><td id='td_sex_"+maxSeq+"' ></td>";
+		lineData += '<td id="td_age_'+maxSeq+'" ></td><td><a href="javascript:void(0)" onclick="delLine(this)" > X </a></td>';
+		lineData += "</tr>";
+		$("#lineDetail").append(lineData);
+		maxSeq++;
+	}
+	
+	
+	/* 删除行 */
+	function delLine(obj){
+//		$(obj).parent().parent().remove();
+		$(obj).closest("tr").remove();
+	}
+	
+	
+	/* 同步隐藏数据到输入区 */
+	function synValue(){
+		$("*[modify='modify']").each(function(i,v){
+			$(v).val($("input[name='"+$(v).attr("name")+"_"+nowSeq+"']").val());
+		});
+	}
+	
+	
+	/* 数据同步到隐藏输入框  */
+	function loadValue(obj){
+		$("input[name='"+$(obj).attr("name")+"_"+nowSeq+"']").val($(obj).val());
+		$("#td_"+$(obj).attr("name")+"_"+nowSeq).html($(obj).val());
+	}
+	
+	
+</script>
+	</body>
+</html>

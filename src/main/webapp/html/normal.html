@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../resources/components/hzy/css/all.css" />
+		<link rel="stylesheet" type="text/css" href="../resources/components/iconfont/style.css" />
+		<script type="text/javascript" src="../resources/components/hzy/jquery/jquery-3.3.1.min.js" ></script>
+		<style type="text/css">
+			body{
+				font-family:"宋体";
+				font-size: 14px;	
+			}
+			input[type="text"]{
+				border-radius:4px;
+				height: 18px;
+				width: 180px;
+				border: solid 1px #0000004f;
+				padding-left: 5px;
+				margin: 4px;
+			}
+			button{
+				border-radius:4px;
+				border: solid 1px #0000004f;
+				background-color: #8b8b8b24;
+			}
+			
+			.upload-item{
+	            height: 25px;
+	            line-height: 25px;
+	            border-radius: 4px;
+	            background-color: #F0F5FE;
+	            width: 175px;
+	            position: relative;
+	            display: inline-flex;
+	            border: 1px dashed #80ADFE;
+	            font-size: 14px;
+	            text-align: center;
+	            cursor: pointer;
+	        }
+	        .upload-item input[type="file"]{
+	            display: block;
+	            top:-2px;
+	            cursor:pointer;
+	            opacity: 0;
+	            position:absolute;
+	            width:100%;
+	            height:100%;
+	            z-index: 111;
+	            cursor: pointer;
+	        }
+	        .upload-item .file-name{
+	            cursor: pointer;
+	            color: rgb(53, 126, 250);
+	            text-overflow: ellipsis;
+	            white-space: nowrap;
+	            overflow: hidden;
+	            width: 100%;
+	        }
+	        .a-download{
+	            width: 25px;
+	            margin: 2px;
+	            position: absolute;
+	            height: 24px;
+	        }
+		</style>
+	</head>
+	<body>
+		
+		
+		<h2>input</h2>
+		<div>
+			<form id="form_id_1" name="form_name_1" action="https://www.baidu.com/" >
+				
+				输入框 : <input type="text" value="this is a" />  <br/>
+				
+				必填样式 ：<input class="require" type="text" /> <br/>
+				
+				<input type="date" name="date1" id="date1" value="2012-12-12" /> 
+				<br/>
+				<span id="text_color" >取色器  : </span><input type="color" name="" id="color_touch" onblur="getcolor(this)" value="#666666" />
+			</form>
+			<form id="form_id_2" name="form_name_2" ></form>
+		</div>
+		
+		<button onclick="baidu()" >百度一下</button>
+		
+		
+		
+		<div class="h-step-content">
+			<dl>
+				<ul class="step-ul ul">
+					<li id="order" class="select" >***</li>
+					<li id="finace" class="unselect">###</li>
+				</ul>
+			</dl>
+			<div class="" >
+				<div id="order_a" class="block-con" style="color: lightgrey;" >
+					this is default block <br>
+					<p>********************</p>
+					<p>********************</p>
+				</div>
+				<div id="finace_a" class="other-con" style="color: #555555;" >
+					 default display = none;
+					<p>#####################</p>
+					<p>#####################</p>
+				</div>
+			</div>
+		</div>
+		
+		
+		<div style="display: none;">
+			<input type="text" value="a" id="text_1" name="" />
+			<input type="text" value="a" id="text_2" name="" />
+			<input type="text" value="a" id="text_3" name="" />
+			<input type="text" value="a" id="text_4" name="" />
+		</div>
+		
+		
+		
+		<h2>checkbox</h2>
+		<input type="checkbox" name="chkBox" onclick="chkAll(this)" title="全选" />
+		<input type="checkbox" name="chkBox" />
+		<input type="checkbox" name="chkBox" />
+		<input type="checkbox" name="chkBox" />
+		<input type="checkbox" name="chkBox" />
+		
+		
+		
+		
+		<h2>iconfont</h2>
+		<script type="text/javascript" >
+			for (var i = 1;i < 227;i++){
+				if (i % 40 == 0)
+					document.write("<br/>");
+				var _class = i + '';
+				while (_class.length < 3)
+					_class = '0' + _class;
+				_class = "icon-f" + _class;
+				var icon = '<span style="margin:3px;" class="'+_class+'" title="'+_class+'" ></span>';
+				document.write(icon);
+			}
+		</script>
+		
+		
+		
+		<h2>upload item</h2>
+		
+		<ul style="clear:both;list-style-type: none;" >
+            <li>
+                <div class="upload-item" >
+                    <a href="javascript:void(0)" class="file-name" >点击上传</a>
+                    <input id="invFile" type="file" title="点击选择要上传的文件" onchange="changeFile(this)" />
+                </div>
+                <a class="img-title layui-btn layui-btn-normal layui-btn-sm download a-download" title="下载上传模板" href="${res_path}/modules/xmlMode/moban.xlsx" >
+                    <i class="layui-icon layui-icon-download-circle" style="float: left;margin-left:-6px;margin-top: -3px;"></i>
+                </a>
+            </li>
+        </ul>
+		
+		
+		
+<script type="text/javascript">
+	
+	
+	
+	
+	function chkAll(e){
+		var name = e.name;
+		if(e.checked == true){
+			$("input[name='"+name+"']").prop("checked",true);
+		} else {
+			$("input[name='"+name+"']").prop("checked",false);
+		}
+	}
+	
+	
+
+	function getcolor(e){
+		console.log(e.value);
+		document.getElementById("text_color").style.color = e.value;
+	}
+	
+	
+	/* %c 影响后面输出的数据 */
+	console.log("before  %c  after %c this is amazing ","color:red;","color:green");
+	
+	function baidu(){
+		document.forms[0].submit();
+	}
+
+	/* js.forEach */
+	console.log("%c js.forEach","color:green;");
+	var numbers = [4, 9, 16, 25];
+	numbers.forEach(function(val,index,arr){
+		console.log("\tval:"+val);
+	});
+	
+	
+	/* jQuery each 
+	 * $.each(arr,function(i,n){});
+	 * $("li").each(function(i,v){});
+	 * */
+	console.log("%c jQuery.each","color:green;");
+	var li = $(".h-step-content").find("ul.step-ul").find("li");
+	$("li").each(function(i,v){
+		console.log(i+" \t"+v);
+		console.log($(v).attr("id")+"\t"+$(v).text());
+	});
+	
+	
+	/* 切换样式 */
+	li.click(function(){
+		var id = $(this).attr("id");
+		var id_ = $(this).attr("id")+"_a";
+		console.log(id_);
+		if($("#"+id_).hasClass("other-con")){
+			/* 切换显示与隐藏 */
+			$("#"+id_).removeClass("other-con").addClass("block-con");
+			$("#"+id_).siblings().removeClass("block-con").addClass("other-con");
+			/* 切换菜单边角样式 */
+			$("#"+id).removeClass("unselect").addClass("select");
+			$("#"+id).siblings().removeClass("select").addClass("unselect");
+		} 
+	});
+	
+	/*$.ajax({
+		type:"get",
+		url:"",
+		async:true,
+		success:function(data){
+			alert("ok");
+		}
+	});
+	
+	window.location.reload();*/
+	
+</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

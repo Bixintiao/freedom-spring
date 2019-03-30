@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DOCUMENT>
+    <REVERSE_VOUCHER>
+        <ITEM>
+            <YW_ID>7869</YW_ID>
+            <BUKRS>7390</BUKRS>
+            <GJAHR>2019</GJAHR>
+            <MONAT>03</MONAT>
+            <STATUS>F</STATUS>
+            <SAPDOC_ID/>
+            <REASON>没有项目信息传输到会计中</REASON>
+            <SEND_DATE>2019-03-26</SEND_DATE>
+            <SEND_TIME>15:10:22</SEND_TIME>
+        </ITEM>
+        <ITEM>
+            <YW_ID>7869</YW_ID>
+            <BUKRS>7390</BUKRS>
+            <GJAHR>2019</GJAHR>
+            <MONAT>03</MONAT>
+            <STATUS>F</STATUS>
+            <SAPDOC_ID/>
+            <REASON>没有项目信息传输到会计中</REASON>
+            <SEND_DATE>2019-03-26</SEND_DATE>
+            <SEND_TIME>15:10:22</SEND_TIME>
+        </ITEM>
+    </REVERSE_VOUCHER>
+</DOCUMENT>

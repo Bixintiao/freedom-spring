@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Mapping DTD Version 1.0//EN"
+        "http://castor.org/mapping.dtd">
+<mapping>
+
+    <field-handler name="ColorHandler" class="com.hzy.modules.oxm.handler.ColorHandler" ></field-handler>
+
+    <class name="com.hzy.modules.oxm.entity.Foo">
+        <field name="size" type="integer">
+            <bind-xml node="element"/>
+        </field>
+        <field name="name" type="string"/>
+        <field name="color" type="string" handler="ColorHandler"/>
+    </class>
+</mapping>

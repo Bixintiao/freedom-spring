@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 配置文件需要引入的类 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+
+
+    <!-- 扫描注解 -->
+    <context:component-scan base-package="com.hzy.modules" >
+    </context:component-scan>
+
+    <!-- 数据源 -->
+    <!--<import resource="classpath:spring/spring-dataSource.xml" />-->
+
+    <!-- mybatis -->
+    <!--<import resource="classpath:spring/spring-mybatis.xml" />-->
+
+    <!-- 事务 -->
+    <!--<import resource="classpath:spring/spring-tx.xml" />-->
+
+    <!-- activiti -->
+    <!--<import resource="classpath:spring/spring-activiti.xml" />-->
+
+    <!-- redis -->
+    <!--<import resource="classpath:spring/spring-redis.xml" />-->
+
+
+    <!-- cxf 配置 webservice 手动配置 bean greetingImpl  -->
+    <bean id="greetingServiceImpl" class="com.hzy.modules.cxfWebService.service.impl.GreetingServiceImpl"/>
+    <jaxws:endpoint id="greetingService"  implementor="#greetingServiceImpl"   address="/GreetingService" />
+
+    <!-- bean helloServiceImpl 使用 @Component 注解注入  -->
+    <jaxws:endpoint id="helloService"  implementor="#helloServiceImpl"   address="/HelloService" />
+
+
+
+</beans>

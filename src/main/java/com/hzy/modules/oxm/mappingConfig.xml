@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE mapping PUBLIC
+        "-//EXOLAB/Castor Mapping DTD Version 1.0//EN"
+        "http://castor.org/mapping.dtd">
+<mapping>
+    <description>
+        castor mapping demo
+        document :
+                https://castor-data-binding.github.io/castor/reference-guides/1.3.3/html-single/index.html#xml.framework.introspection.ouput
+    </description>
+
+    <include href="other_mapping_file.xml"/>
+
+    <!-- 自定义可配置字段处理程序 -->
+    <field-handler name="dateFormatHandler" class="com.hzy.modules.oxm.handler.DateFormatHandler" ></field-handler>
+
+
+
+    <!-- mapping for class 'A' a mapping can have one or more class -->
+    <class name="A">
+        <!-- get-method 和 set-method 需要一起指定 -->
+        <field name="propertyName" type="string" get-method="getPropertyName" set-method="setPropertyName" handler="dateFormatHandler">
+            <description>a property of the class</description>
+            <bind-xml name="nodeName" node="element"></bind-xml>
+        </field>
+    </class>
+
+    <!-- mapping for class 'B' -->
+    <class name="B">
+    </class>
+
+
+
+
+    <!--
+    Type shortnames
+        short name	            Primitive type?	        Java Class
+
+        other	                N	                    java.lang.Object
+        string	                N	                    java.lang.String
+        integer	                Y	                    java.lang.Integer.TYPE
+        long	                Y	                    java.lang.Long.TYPE
+        boolean	                Y	                    java.lang.Boolean.TYPE
+        double	                Y	                    java.lang.Double.TYPE
+        float	                Y	                    java.lang.Float.TYPE
+        big-decimal	            N	                    java.math.BigDecimal
+        byte	                Y	                    java.lang.Byte.TYPE
+        date	                N	                    java.util.Date
+        short	                Y	                    java.lang.Short.TYPE
+        char	                Y	                    java.lang.Character.TYPE
+        bytes	                N	                    byte[]
+        chars	                N	                    char[]
+        strings	                N	                    String[]
+        locale	                N	                    java.util.Locale
+
+        Castor will try to cast the data in the XML file in the proper Java type.
+    -->
+
+
+    <!--
+     Type implementations
+        name	            <type>	                        default implementation
+
+        array	            <type_attribute>[]	            <type_attribute>[]
+        arraylist	        java.util.List	                java.util.Arraylist
+        vector	            java.util.Vector	            java.util.Vector
+        hashtable	        java.util.Hashtable 	        java.util.Hashtable
+        collection	        java.util.Collection	        java.util.Arraylist
+        set                 java.util.Set	                java.util.Hashset
+        map                 java.util.Map	                java.util.Hashmap
+        sortedset	        java.util.SortedSet	            java.util.TreeSet
+
+    -->
+
+</mapping>

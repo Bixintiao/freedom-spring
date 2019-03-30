@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DOCUMENT>
+	<ITEMS>
+		<REVERSE_VOUCHER>
+			<COMPANY>公司代码1</COMPANY>
+			<YEAR>会计年度1</YEAR>
+			<MONAT>过账期间1</MONAT>
+			<HKONT>总账科目1</HKONT>
+		</REVERSE_VOUCHER>
+		<REVERSE_VOUCHER>
+			<COMPANY>公司代码2</COMPANY>
+			<YEAR>会计年度2</YEAR>
+			<MONAT>过账期间2</MONAT>
+			<HKONT>总账科目2</HKONT>
+		</REVERSE_VOUCHER>
+		<REVERSE_VOUCHER>
+			<COMPANY>公司代码3</COMPANY>
+			<YEAR>会计年度3</YEAR>
+			<MONAT>过账期间3</MONAT>
+			<HKONT>总账科目3</HKONT>
+		</REVERSE_VOUCHER>
+	</ITEMS>
+</DOCUMENT>

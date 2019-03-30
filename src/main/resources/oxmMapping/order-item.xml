@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Mapping DTD Version 1.0//EN" "http://castor.org/mapping.dtd">
+<mapping>
+    <description>订单条目-for-test</description>
+    <class name="com.hzy.modules.oxm.entity.OrderItem" auto-complete="true">
+
+        <field name="identity" type="string" required="true" >
+            <bind-xml name="IDENTITY" node="element" ></bind-xml>
+        </field>
+        
+        <field name="name" type="string" required="true" >
+            <bind-xml name="NAME" node="element" ></bind-xml>
+        </field>
+
+    </class>
+</mapping>

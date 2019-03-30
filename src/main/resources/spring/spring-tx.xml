@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd"
+            default-lazy-init="true" default-autowire="byName">
+
+    <!-- 配置事务管理器 -->
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+        <!-- 配置声明式事务 -->
+    <tx:advice transaction-manager="txManager" id="txAdvice">
+    <tx:attributes>
+        <tx:method name="get*" propagation="NOT_SUPPORTED" isolation="READ_COMMITTED" read-only="true" />
+        <tx:method name="load*" propagation="NOT_SUPPORTED" isolation="READ_COMMITTED" read-only="true" />
+        <tx:method name="query*" propagation="NOT_SUPPORTED" isolation="READ_COMMITTED" read-only="true" />
+        <tx:method name="search*" propagation="NOT_SUPPORTED" isolation="READ_COMMITTED" read-only="true" />
+        <tx:method name="find*" propagation="NOT_SUPPORTED" isolation="READ_COMMITTED" read-only="true" />
+
+        <tx:method name="add*"    propagation="REQUIRED" isolation="READ_COMMITTED" rollback-for="Exception" />
+        <tx:method name="create*" propagation="REQUIRED" isolation="READ_COMMITTED" rollback-for="Exception" />
+        <tx:method name="remove*" propagation="REQUIRED" isolation="READ_COMMITTED" rollback-for="Exception" />
+        <tx:method name="delete*" propagation="REQUIRED" isolation="READ_COMMITTED" rollback-for="Exception" />
+        <tx:method name="modify*" propagation="REQUIRED" isolation="READ_COMMITTED" rollback-for="Exception" />
+        <tx:method name="update*" propagation="REQUIRED" isolation="READ_COMMITTED" rollback-for="Exception" />
+        <tx:method name="*" propagation="SUPPORTS" read-only="true" />
+    </tx:attributes>
+    </tx:advice>
+    <aop:config>
+
+    <!--
+    ret-type-pattern:标识方法的返回值，需要使用全路径的类名如java.lang.String,也可以为*表示任何返回值；
+　　　　name-pattern:指定方法名,*代表所有,例如set*,代表以set开头的所有方法.
+　　　　param-pattern:指定方法参数(声明的类型),(..)代表所有参数,(*)代表一个参数,(*,String)代表第一个参数为任何值,第二个为String类型.
+    -->
+    <!-- 在多个表达式之间使用 ||,or表示 或，使用 &&,and表示 与，！表示 非.例如 -->
+    <aop:pointcut expression="execution(* com.hzy.modules..*ServiceImpl.*(..) )" id="txPointCut"/>
+    <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
+
+    </aop:config>
+
+
+
+</beans>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Mapping DTD Version 1.0//EN" "http://castor.org/mapping.dtd">
+<mapping>
+
+    <description>order</description>
+
+
+    <!-- import another xml file and the class='com.hzy.modules.oxm.entity.OrderItem' -->
+    <include href="order-item.xml"></include>
+
+
+    <field-handler name="dateFormatHandler" class="com.hzy.modules.oxm.handler.DateFormatHandler" />
+    <field-handler name="dateGeneralizedHandler" class="com.hzy.modules.oxm.handler.DateGeneralizedHandler" />
+    <field-handler name="dateConfigurableHandler" class="com.hzy.modules.oxm.handler.DateConfigurableHandler">
+        <param name="date-format" value="yyyy-MM-dd HH:mm:ss"></param>
+    </field-handler>
+    <field-handler name="dateConfigurableHandler_2" class="com.hzy.modules.oxm.handler.DateConfigurableHandler">
+        <param name="date-format" value="yyyy-MM-dd"></param>
+    </field-handler>
+
+
+    <class name="com.hzy.modules.oxm.entity.Order">
+        <field name="name" type="string" required="true" >
+            <bind-xml name="NAME" node="element" ></bind-xml>
+        </field>
+
+        <!-- date type use string resolve by handler -->
+        <field name="orderDate" type="string" required="true" handler="dateConfigurableHandler_2" >
+            <bind-xml name="ORDER_DATE" node="element" ></bind-xml>
+        </field>
+
+
+        <field name="orderNumber" type="integer" required="true">
+            <bind-xml name="ORDER_NUMBER" node="element" ></bind-xml>
+        </field>
+
+        <field name="orderItems" type="com.hzy.modules.oxm.entity.OrderItem" collection="arraylist">
+            <bind-xml name="ITEM" location="ITEMS"></bind-xml>
+        </field>
+    </class>
+</mapping>

@@ -1,0 +1,231 @@
+<?xml version="1.0"?>
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Mapping DTD Version 1.0//EN" "http://castor.org/mapping.dtd">
+<mapping>
+    <description>sap凭证子项</description>
+    <class name="com.hzy.modules.oxm.entity.VoucherItem">
+        <map-to xml="ITEM"/>
+        <!-- 公司代码 -->
+        <field name="bukrs" type="string" required="true" >
+            <bind-xml name="BUKRS" node="element"/>
+        </field>
+        <!-- 业务凭证ID -->
+        <field name="yw_id" type="string" required="true">
+            <bind-xml name="YW_ID" node="element"/>
+        </field>
+        <!-- 会计年度 -->
+        <field name="gjahr" type="string" required="true">
+            <bind-xml name="GJAHR" node="element"/>
+        </field>
+
+        <!-- 行项目编号 -->
+        <field name="buzei" type="string" required="true">
+            <bind-xml name="BUZEI" node="element"/>
+        </field>
+        <!-- 记账码 -->
+        <field name="bschl" type="string" required="true">
+            <bind-xml name="BSCHL" node="element"/>
+        </field>
+        <!-- 科目 -->
+        <field name="hkont" type="string" required="true">
+            <bind-xml name="HKONT" node="element"/>
+        </field>
+        <!-- 行项目文本 -->
+        <field name="sgtxt" type="string" required="true">
+            <bind-xml name="SGTXT" node="element"/>
+        </field>
+        <!-- 分配编号 -->
+        <field name="zuonr" type="string" required="true">
+            <bind-xml name="ZUONR" node="element"/>
+        </field>
+        <!-- 特殊总账标识 -->
+        <field name="umskz" type="string" required="false">
+            <bind-xml name="UMSKZ" node="element"/>
+        </field>
+        <!-- 付款原因代码 -->
+        <field name="rstgr" type="string" required="false">
+            <bind-xml name="RSTGR" node="element"/>
+        </field>
+        <!-- 贸易伙伴 -->
+        <field name="vbund" type="string" required="false">
+            <bind-xml name="VBUND" node="element"/>
+        </field>
+        <!-- 数量 -->
+        <field name="menge" type="big-decimal" required="false">
+            <bind-xml name="MENGE" node="element"/>
+        </field>
+        <!-- 单位 -->
+        <field name="meins" type="string" required="false">
+            <bind-xml name="MEINS" node="element"/>
+        </field>
+        <!-- 税码 -->
+        <field name="mwskz" type="string" required="false">
+            <bind-xml name="MWSKZ" node="element"/>
+        </field>
+        <!-- 本位币金额 -->
+        <field name="dmbtr" type="big-decimal" required="true">
+            <bind-xml name="DMBTR" node="element"/>
+        </field>
+        <!-- 金额 -->
+        <field name="wrbtr" type="big-decimal" required="false">
+            <bind-xml name="WRBTR" node="element"/>
+        </field>
+        <!-- 成本中心 -->
+        <field name="kostl" type="string" required="false">
+            <bind-xml name="KOSTL" node="element"/>
+        </field>
+        <!-- 利润中心 -->
+        <field name="prctr" type="string" required="false">
+            <bind-xml name="PRCTR" node="element"/>
+        </field>
+        <!-- 基准金额 -->
+        <field name="fwbas" type="string" required="false">
+            <bind-xml name="FWBAS" node="element"/>
+        </field>
+        <!-- 付款基准日 -->
+        <field name="zfbdt" type="string" required="false">
+            <bind-xml name="ZFBDT" node="element"/>
+        </field>
+        <!-- 供应商代码 -->
+        <field name="lifnr" type="string" required="false">
+            <bind-xml name="LIFNR" node="element"/>
+        </field>
+        <!-- 客户编号 -->
+        <field name="kunnr" type="string" required="false">
+            <bind-xml name="KUNNR" node="element"/>
+        </field>
+        <!-- 参考1 -->
+        <field name="xref1" type="string" required="false">
+            <bind-xml name="XREF1" node="element"/>
+        </field>
+        <!-- 参考2 -->
+        <field name="xref2" type="string" required="false">
+            <bind-xml name="XREF2" node="element"/>
+        </field>
+        <!-- 参考3 -->
+        <field name="xref3" type="string" required="false">
+            <bind-xml name="XREF3" node="element"/>
+        </field>
+        <!-- 反记账 -->
+        <field name="xnegp" type="string" required="false">
+            <bind-xml name="XNEGP" node="element"/>
+        </field>
+        <!-- SAP一次性客户供应商是通过固定编码判断的，宝信需要初始化固定编码进行逻辑判断， -->
+        <field name="name1" type="string" required="false">
+            <bind-xml name="NAME1" node="element"/>
+        </field>
+        <!-- 邮政编码 一性客户、供应商 -->
+        <field name="pstlz" type="string" required="false">
+            <bind-xml name="PSTLZ" node="element"/>
+        </field>
+        <!-- 城市  一性客户、供应商，宝信传递，必输 -->
+        <field name="ort01" type="string" required="false">
+            <bind-xml name="ORT01" node="element"/>
+        </field>
+
+        <!-- 国家代码 一性客户、供应商 -->
+        <field name="land1" type="string" required="false">
+            <bind-xml name="LAND1" node="element"/>
+        </field>
+        <!-- 住宅号及街道 -->
+        <field name="stras" type="string" required="false">
+            <bind-xml name="STRAS" node="element"/>
+        </field>
+        <!-- 银行账户号码 -->
+        <field name="bankn" type="string" required="false">
+            <bind-xml name="BANKN" node="element"/>
+        </field>
+        <!-- 税号1 -->
+        <field name="stcd1" type="string" required="false">
+            <bind-xml name="STCD1" node="element"/>
+        </field>
+        <!-- 税号4 -->
+        <field name="stcd4" type="string" required="false">
+            <bind-xml name="STCD4" node="element"/>
+        </field>
+        <!-- 标题 -->
+        <field name="anred" type="string" required="false">
+            <bind-xml name="ANRED" node="element"/>
+        </field>
+        <!-- 汇票签发日 -->
+        <field name="wdate" type="string" required="false">
+            <bind-xml name="WDATE" node="element"/>
+        </field>
+        <!-- 获利能力段编号(CO-PA) -->
+        <field name="paobjnr" type="string" required="false">
+            <bind-xml name="PAOBJNR" node="element"/>
+        </field>
+        <!-- 汇票出票人的名字  一性客户、供应商 -->
+        <field name="wname" type="string" required="false">
+            <bind-xml name="WNAME" node="element"/>
+        </field>
+        <!-- 汇票出票人的城市 -->
+        <field name="wort1" type="string" required="false">
+            <bind-xml name="WORT1" node="element"/>
+        </field>
+        <!-- 汇票受票人的城市 -->
+        <field name="wort2" type="string" required="false">
+            <bind-xml name="WORT2" node="element"/>
+        </field>
+        <!-- 汇票受票人 -->
+        <field name="wbzog" type="string" required="false">
+            <bind-xml name="WBZOG" node="element"/>
+        </field>
+        <!-- 地区 -->
+        <field name="regio" type="string" required="false">
+            <bind-xml name="REGIO" node="element"/>
+        </field>
+
+        <!-- 预留字段 -->
+        <field name="zadditional1" type="string" required="false">
+            <bind-xml name="ZADDITIONAL1" node="element"/>
+        </field>
+        <!-- 预留字段 -->
+        <field name="zadditional2" type="string" required="false">
+            <bind-xml name="ZADDITIONAL2" node="element"/>
+        </field>
+        <!-- 预留字段 -->
+        <field name="zadditional3" type="string" required="false">
+            <bind-xml name="ZADDITIONAL3" node="element"/>
+        </field>
+        <!-- 预留字段 -->
+        <field name="zadditional4" type="string" required="false">
+            <bind-xml name="ZADDITIONAL4" node="element"/>
+        </field>
+        <!-- 预留字段 -->
+        <field name="zadditional5" type="string" required="false">
+            <bind-xml name="ZADDITIONAL5" node="element"/>
+        </field>
+        <!-- 预留字段 -->
+        <field name="zadditional6" type="string" required="false">
+            <bind-xml name="ZADDITIONAL6" node="element"/>
+        </field>
+        <!-- 订单号 -->
+        <field name="aufnr" type="string" required="false">
+            <bind-xml name="AUFNR" node="element"/>
+        </field>
+        <!-- 物料编号 -->
+        <field name="matnr" type="string" required="false">
+            <bind-xml name="MATNR" node="element"/>
+        </field>
+        <!-- 业务范围 -->
+        <field name="gsber" type="string" required="false">
+            <bind-xml name="GSBER" node="element"/>
+        </field>
+        <!-- 付款条件代码 -->
+        <field name="pmnttrms" type="string" required="false">
+            <bind-xml name="PMNTTRMS" node="element"/>
+        </field>
+        <!-- 起息日 -->
+        <field name="valut" type="string" required="false">
+            <bind-xml name="VALUT" node="element"/>
+        </field>
+        <!-- 通用字段 -->
+        <field name="zzist" type="string" required="false">
+            <bind-xml name="ZZIST" node="element"/>
+        </field>
+        <!-- 可以支付汇票的银行地址(国内) -->
+        <field name="wbank" type="string" required="false">
+            <bind-xml name="WBANK" node="element"/>
+        </field>
+</class>
+</mapping>

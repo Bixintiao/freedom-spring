@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Mapping DTD Version 1.0//EN" "http://castor.org/mapping.dtd">
+<mapping>
+    <description>sap凭证抬头</description>
+    <class name="com.hzy.modules.oxm.entity.VoucherTitle">
+        <map-to xml="HEAD"/>
+        <!-- 公司代码 -->
+        <field name="bukrs" type="string" required="true" >
+            <bind-xml name="BUKRS" node="element"/>
+        </field>
+        <!-- 附件张数 -->
+        <field name="numpg" type="string" required="false">
+            <bind-xml name="NUMPG" node="element"/>
+        </field>
+        <!-- 货币码 -->
+        <field name="waers" type="string" required="true" >
+            <bind-xml name="WAERS" node="element"/>
+        </field>
+        <!-- 汇率 -->
+        <field name="kursf" type="big-decimal" required="false" >
+            <bind-xml name="KURSF" node="element"/>
+        </field>
+        <!-- 凭证中的凭证日期 -->
+        <field name="bldat" type="string" required="false">
+            <bind-xml name="BLDAT" node="element"/>
+        </field>
+        <!-- 凭证中的过账日期 -->
+        <field name="budat" type="string" required="true">
+            <bind-xml name="BUDAT" node="element"/>
+        </field>
+        <!-- 会计年度 -->
+        <field name="gjahr" type="string" required="false">
+            <bind-xml name="GJAHR" node="element"/>
+        </field>
+        <!-- 凭证摘要 -->
+        <field name="bktxt" type="string" required="false">
+            <bind-xml name="BKTXT" node="element"/>
+        </field>
+        <!-- 会计期间 -->
+        <field name="monat" type="string" required="false">
+            <bind-xml name="MONAT" node="element"/>
+        </field>
+        <!-- 参照 -->
+        <field name="xblnr" type="string" required="false">
+            <bind-xml name="XBLNR" node="element"/>
+        </field>
+        <!-- 凭证类型 -->
+        <field name="blart" type="string" required="true">
+            <bind-xml name="BLART" node="element"/>
+        </field>
+        <!-- 制证人 -->
+        <field name="usnam" type="string" required="true">
+            <bind-xml name="USNAM" node="element"/>
+        </field>
+        <!-- 业务凭证ID -->
+        <field name="yw_id" type="string" required="true">
+            <bind-xml name="YW_ID" node="element"/>
+        </field>
+        <!-- 来源业务系统标识 -->
+        <field name="ywxt" type="string" required="true">
+            <bind-xml name="YWXT" node="element"/>
+        </field>
+        <!-- 业务标识 -->
+        <field name="zyw_type" type="string" required="false">
+            <bind-xml name="ZYW_TYPE" node="element"/>
+        </field>
+        <!-- 被冲销的SAP凭证号 -->
+        <field name="r_belnr" type="string" required="false">
+            <bind-xml name="R_BELNR" node="element"/>
+        </field>
+        <!-- 冲销原因 -->
+        <field name="stgrd" type="string" required="false">
+            <bind-xml name="STGRD" node="element"/>
+        </field>
+        <!-- 冲销过账日期 -->
+        <field name="stodt" type="string" required="false">
+            <bind-xml name="STODT" node="element"/>
+        </field>
+        <!-- 发送日期 -->
+        <field name="send_date" type="string" required="true">
+            <bind-xml name="SEND_DATE" node="element"/>
+        </field>
+        <!-- 发送时间 -->
+        <field name="send_time" type="string" required="true">
+            <bind-xml name="SEND_TIME" node="element"/>
+        </field>
+        <!-- 预留字段 -->
+        <field name="zadditional1" type="string" required="false">
+            <bind-xml name="ZADDITIONAL1" node="element"/>
+        </field>
+        <!-- 预留字段 -->
+        <field name="zadditional2" type="string" required="false">
+            <bind-xml name="ZADDITIONAL2" node="element"/>
+        </field>
+        <!-- 预留字段 -->
+        <field name="zadditional3" type="string" required="false">
+            <bind-xml name="ZADDITIONAL3" node="element"/>
+        </field>
+        <!-- 预留字段 -->
+        <field name="zadditional4" type="string" required="false">
+            <bind-xml name="ZADDITIONAL4" node="element"/>
+        </field>
+    </class>
+</mapping>
