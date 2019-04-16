@@ -42,31 +42,6 @@ public class cxfTest {
 
 
 
-    String wsdlDocumentLocation = "http://10.1.1.15:8001/sap/bc/srt/wsdl/flv_10002A111AD1/bndg_url/sap/bc/srt/rfc/sap/zco_wly_service_pz/200/zwly_ws_pz/zwly_ws_pz?sap-client=200";
-
-
-    @Test
-    public void test00() throws Exception {
-        // 创建动态客户端
-        JaxWsDynamicClientFactory dcf = JaxWsDynamicClientFactory.newInstance();
-        Client client = dcf.createClient(wsdlDocumentLocation);
-        Object[] objects = client.invoke("ZfwlyReceiveData", " test ");
-        System.out.println("\n 返回数据:" + objects[0]);
-    }
-
-
-
-
-    @Test
-    public void test01() throws Exception {
-        String wsdlUrl = "http://ERP07.minmetals.com.cn:8001/sap/bc/srt/rfc/sap/zco_wly_service_pz/200/zwly_ws_pz/zwly_ws_pz?wsdl";
-        JaxWsDynamicClientFactory dcf = JaxWsDynamicClientFactory.newInstance();
-        Client client = dcf.createClient(wsdlUrl);
-        Bus bus = client.getBus();
-        Object[] objects = client.invoke("ZfwlyReceiveData", "?","?");
-        System.out.println("\n 返回数据:" + objects[0]);
-    }
-
 
 
 }

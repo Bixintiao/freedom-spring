@@ -1,8 +1,6 @@
-package converter;
+package plugin.converter;
 
 import org.springframework.core.convert.converter.Converter;
-
-import java.util.Date;
 
 /**
  * @author hzy

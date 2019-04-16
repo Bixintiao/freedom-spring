@@ -1,5 +1,6 @@
 package otherTest;
 
+import com.hzy.modules.interface_.person.Hunter;
 import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -14,6 +15,7 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.text.DecimalFormat;
 import java.util.regex.Pattern;
 
@@ -51,5 +53,12 @@ public class OtherTest {
         System.out.println(format);
     }
 
+
+    @Test
+    public void testInvoke() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+
+        Hunter hanter = new Hunter();
+        hanter.getClass().getMethod("eat").invoke(hanter);
+    }
 
 }

@@ -12,7 +12,23 @@ import org.springframework.web.context.WebApplicationContext;
  */
 public class SpringContextUtil {
 
-    WebApplicationContext wac = ContextLoader.getCurrentWebApplicationContext();
+    static WebApplicationContext wac = null;
+    {
+        wac = ContextLoader.getCurrentWebApplicationContext();
+    }
+
+    public static Object getBean(String s){
+        return wac.getBean(s);
+    }
+
+    public static Object getBean(Class clazz){
+        return wac.getBean(clazz);
+    }
+
+
+    public static Object getBean(String s, Object... o){
+        return wac.getBean(s, o);
+    }
 
 
 }

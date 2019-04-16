@@ -20,6 +20,7 @@
 
 
     <class name="com.hzy.modules.oxm.entity.Order">
+        <map-to xml="ORDER"></map-to>
         <field name="name" type="string" required="true" >
             <bind-xml name="NAME" node="element" ></bind-xml>
         </field>

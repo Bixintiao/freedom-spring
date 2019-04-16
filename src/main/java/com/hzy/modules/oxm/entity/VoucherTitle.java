@@ -11,7 +11,9 @@ import java.util.List;
  * @Description version 1.0
  * 发送凭证抬头
  */
-public class VoucherTitle {
+public class VoucherTitle implements java.io.Serializable {
+
+    private static final long serialVersionUID = 5349194966838144718L;
 
     /**
      * 公司代码 必填 X
@@ -46,7 +48,7 @@ public class VoucherTitle {
      * */
     private String bktxt;
     /**
-     * 会计期间 必填 X
+     * 会计期间 必填 X 201903 传 03 只要月份
      * */
     private String monat;
     /**

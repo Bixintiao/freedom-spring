@@ -32,7 +32,7 @@ function formatDate(dateStr,fmt){
  * @returns {boolean}
  */
 function isAvailable(var1){
-    if (var1 == null && var1 == undefined || var1 == NaN || var1 == ''){
+    if (var1 == null && var1 == undefined || var1 == NaN || var1 == '' || var1 == 'null'){
         return false;
     }
     return true;

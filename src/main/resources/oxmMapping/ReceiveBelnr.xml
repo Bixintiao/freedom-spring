@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Mapping DTD Version 1.0//EN" "http://castor.org/mapping.dtd">
+<mapping>
+    <description>请求获取制造费用凭证信息</description>
+    <class name="com.hzy.modules.oxm.entity.ReceiveBelnr">
+        <map-to xml="REVERSE_VOUCHER"></map-to>
+        <field name="bukrs" type="string" required="true" >
+            <bind-xml name="BUKRS" node="element"/>
+        </field>
+        <field name="gjahr" type="string" required="true" >
+            <bind-xml name="GJAHR" node="element"/>
+        </field>
+        <field name="monat" type="string" required="true" >
+            <bind-xml name="MONAT" node="element"/>
+        </field>
+        <field name="hkont" type="string" required="true" >
+            <bind-xml name="HKONT" node="element"/>
+        </field>
+    </class>
+</mapping>

@@ -26,12 +26,15 @@ import java.util.List;
 @Controller
 public class HelloController {
 
+    org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger(getClass());
 
     /**
      * @return
+     * http://localhost:9099/hello.d
      */
     @RequestMapping("hello")
     public String theDoor(){
+        log.info(" info msg");
         System.out.println("***************  theDoor  ***************");
         return "index";
     }

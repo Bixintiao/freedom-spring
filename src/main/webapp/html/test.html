@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+
+<script type="text/javascript">
+    var strUrl = "contractId=id1001&disableBtn=btn1001";
+
+    var param = {};
+    var var1 = strUrl.slice(1, strUrl.length);
+    var var2 = var1.split("&");
+    for (var var3 in var2){
+        var var4 = var2[var3].split("=");
+        var pName = var4[0];
+        var pVal = var4[1];
+        param[pName] = pVal;
+    }
+    console.log(param);
+    console.log(param.ontractId);
+    console.log(param.disableBtn);
+</script>
+</body>
+</html>

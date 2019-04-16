@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author hzy
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @description
  * @Modification Date:2019年02月18日 {填写修改说明}
  */
-
+//@RestController
 @Controller
 @RequestMapping("user")
 public class UserController {

@@ -1,8 +1,7 @@
 package justTest;
 
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import utils.base.Base;
 
 /**
  * @author hzy
@@ -11,21 +10,47 @@ import org.slf4j.LoggerFactory;
  * @description
  * @Modification Date:2019年01月12日 {填写修改说明}
  */
-public class LoggerTest {
-
-
-    // slf4j
-    Logger logger = LoggerFactory.getLogger(this.getClass());
+public class LoggerTest extends Base {
 
 
     @Test
-    public void loggerTest(){
-        logger.warn("this is warn level message ->->->->");
-        logger.info("this is org.slf4j.Logger & org.slf4j.LoggerFactory {}-{}-{}",1,2,3);
-        logger.debug("this is debug level message ->->->->");
-        logger.error("this is error level message ->->->->");
-        logger.trace("logger.trace");
+    public void commonsLoggingTest(){
+        org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(getClass());
+        log.info("commonsLogging - >< - info");
     }
+
+
+    @Test
+    public void slf4jLoggerTest(){
+        // slf4j
+        org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(getClass());
+        logger.info("info message 【{}】-【{}】",99,1001);
+        logger.info("info message");
+        logger.debug("debug message ");
+    }
+
+
+
+    /*@Test
+    public void log4j2Test() throws Exception {
+        org.apache.logging.log4j.Logger logger = org.apache.logging.log4j.LogManager.getLogger(getClass());
+        logger.trace("trace level message");
+        logger.info( "info  level message 【{}】-【{}】",99,1001);
+        logger.debug("debug level message");
+        logger.error("error level message");
+        logger.fatal("fatal level message");
+        try {
+            throw new Exception("exception");
+        } catch (Exception e){
+            logger.error(e);
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testExtendsLog(){
+        logger.info("aha");
+    }*/
 
 
 }

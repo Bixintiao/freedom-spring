@@ -1,11 +1,21 @@
 package webService;
 
 
+import com.hzy.modules.oxm.entity.SimpleBean;
+import com.hzy.modules.oxm.entity.VoucherTitle;
 import org.apache.axis.client.Call;
 import org.apache.axis.client.Service;
+import org.exolab.castor.mapping.Mapping;
+import org.exolab.castor.mapping.MappingException;
+import org.exolab.castor.xml.*;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.oxm.castor.CastorMarshaller;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import utils.IOUtil;
 import utils.JavaxUtil;
 import javax.xml.namespace.QName;
@@ -18,14 +28,13 @@ import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.ws.Dispatch;
 import javax.xml.ws.soap.SOAPBinding;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.StringWriter;
+import java.io.*;
+import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -48,6 +57,12 @@ public class sapRequest {
     String username = "zhangwy";
     String password = "password";
 
+
+    private static CastorMarshaller castorMarshaller = null;
+    static {
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:spring/spring-oxm.xml");
+        castorMarshaller = (CastorMarshaller) ctx.getBean("castorMarshaller");
+    }
 
 
     //使用http的方式
@@ -109,45 +124,30 @@ public class sapRequest {
     }
 
 
-    // 使用 java
+
     @Test
-    public void testZfwlyReceiveData() throws MalformedURLException, SOAPException, TransformerException {
-        String wsdlDocumentLocation = addr1;
-        String nameSpace = "urn:sap-com:document:sap:soap:functions:mc-style";
-        String serviceName = "ZWLY_WS_PZ";
-        String portName = "ZWLY_WS_PZ_soap12";
+    public void marsh() throws IOException, ParserConfigurationException {
+        VoucherTitle voucherTitle = new VoucherTitle();
+        voucherTitle.setBldat("1231");
+        voucherTitle.setKursf(BigDecimal.ONE);
 
-        javax.xml.ws.Service service = javax.xml.ws.Service.create(new URL(wsdlDocumentLocation), new QName(nameSpace, serviceName));
-        Dispatch<SOAPMessage> dispatch = service.createDispatch(new QName(nameSpace, portName), SOAPMessage.class, javax.xml.ws.Service.Mode.MESSAGE);
+        DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+        Document document = documentBuilder.newDocument();
+        Element root = document.createElement("root");
+        document.appendChild(root);
 
-        SOAPMessage soapMessage = MessageFactory.newInstance(SOAPConstants.SOAP_1_2_PROTOCOL).createMessage();
-        SOAPPart soapPart = soapMessage.getSOAPPart();
-        SOAPEnvelope envelope = soapPart.getEnvelope();
-        envelope.addNamespaceDeclaration("urn","urn:sap-com:document:sap:soap:functions:mc-style");
-        SOAPBody body = envelope.getBody();
-        SOAPElement operation = body.addChildElement("ZfwlyReceiveData");
-        operation.setPrefix("urn");
-        SOAPElement pInput = operation.addChildElement("PInput");
-        SOAPElement pYwxt = operation.addChildElement("PYwxt");
-        pYwxt.setTextContent("B");
+        DOMResult domResult = new DOMResult();
+        castorMarshaller.marshal(voucherTitle, domResult);
+        Node node = domResult.getNode();
 
-        MimeHeaders mimeHeaders = soapMessage.getMimeHeaders();
-        mimeHeaders.setHeader("SOAPAction","urn:sap-com:document:sap:soap:functions:mc-style:ZCO_WLY_SERVICE_PZ:ZfwlyReceiveDataRequest");
+        NodeList childNodes = node.getChildNodes();
+        for (int i =0; i<childNodes.getLength(); i++){
+            Node item = childNodes.item(i);
+            Node n = document.importNode(item, true);
+            root.appendChild(n);
+        }
 
-
-        System.out.println("---------------------- 请求报文 ----------------------");
-        System.err.println(JavaxUtil.soapMessageToString(soapMessage));
-
-
-
-        //请求webService
-        SOAPMessage response = dispatch.invoke(soapMessage);
-
-        // 输出响应结果
-        System.out.println("---------------------- 响应结果 ----------------------");
-        Document doc = response.getSOAPPart().getEnvelope().getBody().extractContentAsDocument();
-        System.err.println(JavaxUtil.documentToString(doc));
-
+        System.err.println(JavaxUtil.documentToString(document));
     }
 
 

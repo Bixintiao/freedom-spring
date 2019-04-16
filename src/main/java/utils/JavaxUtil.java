@@ -1,6 +1,7 @@
 package utils;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
 import javax.xml.transform.*;
@@ -9,14 +10,15 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.math.BigDecimal;
 
 public class JavaxUtil {
 
 
     public static String soapMessageToString(SOAPMessage soapMessage) throws SOAPException, TransformerException {
         // Create transformer
-        TransformerFactory factory = TransformerFactory.newInstance();
-        Transformer transformer = factory.newTransformer();
+        javax.xml.transform.TransformerFactory factory = TransformerFactory.newInstance();
+        javax.xml.transform.Transformer transformer = factory.newTransformer();
 
         // Get reply content
         Source source = soapMessage.getSOAPPart().getContent();
@@ -36,7 +38,7 @@ public class JavaxUtil {
             try {
                 javax.xml.transform.Transformer t = tfac.newTransformer();
                 t.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-                t.setOutputProperty(OutputKeys.INDENT, "yes");
+                //t.setOutputProperty(OutputKeys.INDENT, "yes");
                 t.setOutputProperty(OutputKeys.METHOD, "xml"); // xml, html,
                 // text
                 t.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
@@ -52,6 +54,24 @@ public class JavaxUtil {
             }
         }
         return result;
+    }
+
+    //添加节点
+    public static Element addElement(org.w3c.dom.Document document, org.w3c.dom.Node parent, String eleName, Object content){
+        Element ele = document.createElement(eleName);
+        if (null != content) {
+            if (content.equals("null")){
+                ele.setTextContent("");
+            }
+            else if (content instanceof String){
+                ele.setTextContent((String) content);
+            }
+            else if (content instanceof BigDecimal){
+                ele.setTextContent(content.toString());
+            }
+        }
+        parent.appendChild(ele);
+        return ele;
     }
 
 

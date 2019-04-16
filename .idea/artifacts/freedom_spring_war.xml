@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="freedom-spring:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="freedom-spring-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="freedom-spring:war exploded" />
+    </root>
+  </artifact>
+</component>

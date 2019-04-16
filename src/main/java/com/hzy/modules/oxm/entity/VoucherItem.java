@@ -10,7 +10,9 @@ import java.math.BigDecimal;
  * @Description version 1.0
  * 发送凭证行项目
  */
-public class VoucherItem {
+public class VoucherItem implements java.io.Serializable {
+
+    private static final long serialVersionUID = 4654231238610184573L;
 
     /**
      * 公司代码  必填 X
@@ -30,6 +32,8 @@ public class VoucherItem {
     private String buzei;
     /**
      * 记账码  必填 X
+     * 40 借
+     * 50 贷
      * */
     private String bschl;
     /**
@@ -49,6 +53,7 @@ public class VoucherItem {
      * */
     private String umskz;
     /**
+     * 货币资金科目的原因代码
      * 付款原因代码 (若为银行货币类科目，该字段为必输字段)
      * */
     private String rstgr;
@@ -57,11 +62,11 @@ public class VoucherItem {
      * */
     private String vbund;
     /**
-     * 数量
+     * 数量 -------------------
      * */
     private BigDecimal menge;
     /**
-     * 单位
+     * 单位 -------------------
      * */
     private String meins;
     /**
@@ -112,7 +117,7 @@ public class VoucherItem {
      * */
     private String xref2;
     /**
-     * 参考3
+     * 参考3  -----------------
      * */
     private String xref3;
     /**
@@ -148,6 +153,14 @@ public class VoucherItem {
      * 银行账户号码
      * */
     private String bankn;
+    /**
+     * 银行代码
+     * */
+    private String bankl;
+    /**
+     * 银行国家代码
+     * */
+    private String banks;
     /**
      * 税号1
      * */
@@ -216,6 +229,8 @@ public class VoucherItem {
      * */
     private String zadditional6;
 
+
+
     //报文中存在   接口文档中不存在的
     /**
      * 订单号
@@ -246,9 +261,47 @@ public class VoucherItem {
      * */
     private String wbank;
 
+    private String ebeln;
+    private String ebelp;
 
 
 
+
+
+
+
+
+    public String getEbelp() {
+        return ebelp;
+    }
+
+    public void setEbelp(String ebelp) {
+        this.ebelp = ebelp;
+    }
+
+    public String getEbeln() {
+        return ebeln;
+    }
+
+    public void setEbeln(String ebeln) {
+        this.ebeln = ebeln;
+    }
+
+    public String getBankl() {
+        return bankl;
+    }
+
+    public void setBankl(String bankl) {
+        this.bankl = bankl;
+    }
+
+    public String getBanks() {
+        return banks;
+    }
+
+    public void setBanks(String banks) {
+        this.banks = banks;
+    }
 
     public String getWbank() {
         return wbank;
@@ -689,62 +742,21 @@ public class VoucherItem {
 
     @Override
     public String toString() {
-        return "VoucherItem{" +
-                "bukrs='" + bukrs + '\'' +
-                ", yw_id='" + yw_id + '\'' +
-                ", gjahr='" + gjahr + '\'' +
-                ", buzei='" + buzei + '\'' +
-                ", bschl='" + bschl + '\'' +
-                ", hkont='" + hkont + '\'' +
-                ", sgtxt='" + sgtxt + '\'' +
-                ", zuonr='" + zuonr + '\'' +
-                ", umskz='" + umskz + '\'' +
-                ", rstgr='" + rstgr + '\'' +
-                ", vbund='" + vbund + '\'' +
-                ", menge=" + menge +
-                ", meins='" + meins + '\'' +
-                ", mwskz='" + mwskz + '\'' +
-                ", dmbtr=" + dmbtr +
-                ", wrbtr=" + wrbtr +
-                ", kostl='" + kostl + '\'' +
-                ", prctr='" + prctr + '\'' +
-                ", fwbas='" + fwbas + '\'' +
-                ", zfbdt='" + zfbdt + '\'' +
-                ", lifnr='" + lifnr + '\'' +
-                ", kunnr='" + kunnr + '\'' +
-                ", xref1='" + xref1 + '\'' +
-                ", xref2='" + xref2 + '\'' +
-                ", xref3='" + xref3 + '\'' +
-                ", xnegp='" + xnegp + '\'' +
-                ", name1='" + name1 + '\'' +
-                ", pstlz='" + pstlz + '\'' +
-                ", ort01='" + ort01 + '\'' +
-                ", land1='" + land1 + '\'' +
-                ", stras='" + stras + '\'' +
-                ", bankn='" + bankn + '\'' +
-                ", stcd1='" + stcd1 + '\'' +
-                ", stcd4='" + stcd4 + '\'' +
-                ", anred='" + anred + '\'' +
-                ", wdate='" + wdate + '\'' +
-                ", paobjnr='" + paobjnr + '\'' +
-                ", wname='" + wname + '\'' +
-                ", wort1='" + wort1 + '\'' +
-                ", wort2='" + wort2 + '\'' +
-                ", wbzog='" + wbzog + '\'' +
-                ", regio='" + regio + '\'' +
-                ", zadditional1='" + zadditional1 + '\'' +
-                ", zadditional2='" + zadditional2 + '\'' +
-                ", zadditional3='" + zadditional3 + '\'' +
-                ", zadditional4='" + zadditional4 + '\'' +
-                ", zadditional5='" + zadditional5 + '\'' +
-                ", zadditional6='" + zadditional6 + '\'' +
-                ", aufnr='" + aufnr + '\'' +
-                ", matnr='" + matnr + '\'' +
-                ", gsber='" + gsber + '\'' +
-                ", pmnttrms='" + pmnttrms + '\'' +
-                ", valut='" + valut + '\'' +
-                ", zzist='" + zzist + '\'' +
-                ", wbank='" + wbank + '\'' +
-                '}';
+        return "VoucherItem [bukrs=" + bukrs + ", yw_id=" + yw_id + ", gjahr=" + gjahr + ", buzei=" + buzei + ", bschl="
+                + bschl + ", hkont=" + hkont + ", sgtxt=" + sgtxt + ", zuonr=" + zuonr + ", umskz=" + umskz + ", rstgr="
+                + rstgr + ", vbund=" + vbund + ", menge=" + menge + ", meins=" + meins + ", mwskz=" + mwskz + ", dmbtr="
+                + dmbtr + ", wrbtr=" + wrbtr + ", kostl=" + kostl + ", prctr=" + prctr + ", fwbas=" + fwbas + ", zfbdt="
+                + zfbdt + ", lifnr=" + lifnr + ", kunnr=" + kunnr + ", xref1=" + xref1 + ", xref2=" + xref2 + ", xref3="
+                + xref3 + ", xnegp=" + xnegp + ", name1=" + name1 + ", pstlz=" + pstlz + ", ort01=" + ort01 + ", land1="
+                + land1 + ", stras=" + stras + ", bankn=" + bankn + ", stcd1=" + stcd1 + ", stcd4=" + stcd4 + ", anred="
+                + anred + ", wdate=" + wdate + ", paobjnr=" + paobjnr + ", wname=" + wname + ", wort1=" + wort1
+                + ", wort2=" + wort2 + ", wbzog=" + wbzog + ", regio=" + regio + ", zadditional1=" + zadditional1
+                + ", zadditional2=" + zadditional2 + ", zadditional3=" + zadditional3 + ", zadditional4=" + zadditional4
+                + ", zadditional5=" + zadditional5 + ", zadditional6=" + zadditional6 + ", aufnr=" + aufnr + ", matnr="
+                + matnr + ", gsber=" + gsber + ", pmnttrms=" + pmnttrms + ", valut=" + valut + ", zzist=" + zzist
+                + ", wbank=" + wbank + "]";
     }
+
+
+
 }
