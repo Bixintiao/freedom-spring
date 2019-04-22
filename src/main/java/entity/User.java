@@ -1,6 +1,7 @@
 package entity;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * @author hzy
@@ -11,24 +12,29 @@ import java.math.BigDecimal;
  */
 public class User {
 
-    private int id;
+    private Integer id;
     private String name;
-    private int age;
+    private Integer age;
+    private Date birth;
     private BigDecimal price;
 
 
     public User() {
     }
 
-    public User(BigDecimal price) {
+    public User(Integer id, String name, Integer age, Date birth, BigDecimal price) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.birth = birth;
         this.price = price;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -40,12 +46,20 @@ public class User {
         this.name = name;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public Date getBirth() {
+        return birth;
+    }
+
+    public void setBirth(Date birth) {
+        this.birth = birth;
     }
 
     public BigDecimal getPrice() {
@@ -56,14 +70,14 @@ public class User {
         this.price = price;
     }
 
-
-
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
+                ", birth=" + birth +
+                ", price=" + price +
                 '}';
     }
 }

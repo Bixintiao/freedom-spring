@@ -120,15 +120,14 @@ public class DateUtil {
         }
 
 
-        static Map<String, String> datePattern = new HashMap<>();
-        static {
-            //[-/:\\.]
-            datePattern.put("^\\d{4}[-/:\\.]{1}\\d{2}[-/:\\.]{1}\\d{2}$","yyyyMMdd");
-            datePattern.put("^\\d{4}[-/:\\.]{1}\\d{2}[-/:\\.]{1}\\d{2}\\s*\\d{2}[-/:\\.]{1}\\d{2}$","yyyyMMddHHmm");
-            datePattern.put("^\\d{4}[-/:\\.]{1}\\d{2}[-/:\\.]{1}\\d{2}\\s*\\d{2}[-/:\\.]{1}\\d{2}[-/:\\.]{1}\\d{2}$","yyyyMMddHHmmss");
-            datePattern.put("^\\d{4}[-/:\\.]{1}\\d{2}[-/:\\.]{1}\\d{2}\\s*\\d{2}[-/:\\.]{1}\\d{2}[-/:\\.]{1}\\d{2}[-/:\\.]{1}\\d{3}$","yyyyMMddHHmmssSSS");
-        }
-
+    static Map<String, String> datePattern = new HashMap<>();
+    static {
+        //[-/:\\.]
+        datePattern.put("^\\d{4}[-/:\\.]{1}\\d{2}[-/:\\.]{1}\\d{2}$","yyyyMMdd");
+        datePattern.put("^\\d{4}[-/:\\.]{1}\\d{2}[-/:\\.]{1}\\d{2}\\s*\\d{2}[-/:\\.]{1}\\d{2}$","yyyyMMddHHmm");
+        datePattern.put("^\\d{4}[-/:\\.]{1}\\d{2}[-/:\\.]{1}\\d{2}\\s*\\d{2}[-/:\\.]{1}\\d{2}[-/:\\.]{1}\\d{2}$","yyyyMMddHHmmss");
+        datePattern.put("^\\d{4}[-/:\\.]{1}\\d{2}[-/:\\.]{1}\\d{2}\\s*\\d{2}[-/:\\.]{1}\\d{2}[-/:\\.]{1}\\d{2}[-/:\\.]{1}\\d{3}$","yyyyMMddHHmmssSSS");
+    }
 
         /**
          * 获取日期格式

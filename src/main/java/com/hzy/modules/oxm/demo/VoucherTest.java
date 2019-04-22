@@ -11,7 +11,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import utils.Entity;
+import utils.BeanUtil;
 import utils.JavaxUtil;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -74,9 +74,9 @@ public class VoucherTest {
         Arrays.stream(fields).forEach(x->{
             try {
                 if (x.getType() == java.math.BigDecimal.class) {
-                    Entity.invokeSet(voucherItem, x.getName(), BigDecimal.ONE);
+                    BeanUtil.invokeSet(voucherItem, x.getName(), BigDecimal.ONE);
                 } else {
-                    Entity.invokeSet(voucherItem, x.getName(), "stringVal");
+                    BeanUtil.invokeSet(voucherItem, x.getName(), "stringVal");
                 }
             } catch (Exception e) {
                 e.printStackTrace();

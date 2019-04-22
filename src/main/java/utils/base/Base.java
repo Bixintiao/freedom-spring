@@ -9,7 +9,7 @@ package utils.base;
  */
 public class Base {
 
-    //protected final org.apache.logging.log4j.Logger logger = org.apache.logging.log4j.LogManager.getLogger(getClass());
+    protected final org.apache.logging.log4j.Logger logger = org.apache.logging.log4j.LogManager.getLogger(getClass());
 
 
 }

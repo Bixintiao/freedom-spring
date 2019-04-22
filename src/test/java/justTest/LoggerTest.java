@@ -31,7 +31,7 @@ public class LoggerTest extends Base {
 
 
 
-    /*@Test
+    @Test
     public void log4j2Test() throws Exception {
         org.apache.logging.log4j.Logger logger = org.apache.logging.log4j.LogManager.getLogger(getClass());
         logger.trace("trace level message");
@@ -46,11 +46,6 @@ public class LoggerTest extends Base {
             e.printStackTrace();
         }
     }
-
-    @Test
-    public void testExtendsLog(){
-        logger.info("aha");
-    }*/
 
 
 }

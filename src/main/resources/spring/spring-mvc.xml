@@ -40,13 +40,4 @@
     <!-- 配置资源 -->
     <mvc:resources mapping="/resources/**/" location="/resources/"/>
 
-
-    <!-- 配置请求拦截器 -->
-    <!--<mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="*.d"/>
-            <bean class="plugin.Interceptor.RequestInterceptor"/>
-        </mvc:interceptor>
-    </mvc:interceptors>-->
-    
 </beans>

@@ -3,7 +3,7 @@
     <Appenders>
         <!-- standard output -->
         <Console name="stdout" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%t] %logger{36} -> %msg%n"/>
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight{[%-5level]} [%20.30t] %20.36c -> %msg%n"/>
         </Console>
         <!-- logger debug level message -->
         <RollingFile name="RollingFile_debug" fileName="logs/debug.log" filePattern="logs/$${date:yyyy-MM-dd}/debug.%i.log.zip">
@@ -16,7 +16,7 @@
         </RollingFile>
         <!-- logger error level message -->
         <RollingFile name="RollingFile_error" fileName="logs/error.log" filePattern="logs/$${date:yyyy-MM-dd}/error.%i.log.zip">
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%t] %logger{36} -> %msg%n" />
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%t] %l -> %msg%n" />
             <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
             <Policies>
                 <CronTriggeringPolicy schedule="0 0 0 1/1 * ?" evaluateOnStartup="true" />

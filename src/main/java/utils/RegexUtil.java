@@ -27,10 +27,12 @@ public class RegexUtil {
 
 
     public static List<String> matchFindAll(String pattern, String line){
-        List<String> allMatches = new ArrayList<String>();
+        List<String> allMatches = new ArrayList<>();
         Matcher matcher = Pattern.compile(pattern).matcher(line);
         while (matcher.find()){
-            allMatches.add(matcher.group(0));
+            for (int i=0; i<=matcher.groupCount(); i++){
+                allMatches.add(matcher.group(i));
+            }
         }
         return allMatches;
     }

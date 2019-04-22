@@ -1,6 +1,5 @@
 package com.hzy.modules.oxm.castor;
 
-import com.alibaba.fastjson.JSON;
 import com.hzy.modules.oxm.entity.Order;
 import com.hzy.modules.oxm.entity.OrderItem;
 import org.exolab.castor.mapping.Mapping;
@@ -8,9 +7,7 @@ import org.exolab.castor.mapping.MappingException;
 import org.exolab.castor.xml.*;
 import org.junit.Test;
 import org.w3c.dom.Document;
-import utils.Entity;
-import utils.HttpUtil;
-import utils.IOUtil;
+import utils.BeanUtil;
 import utils.JavaxUtil;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -86,9 +83,9 @@ public class CastorOrder {
 
     @Test
     public void test() throws Exception {
-        Date orderDate = (Date) Entity.invokeGet(order, "orderDate");
+        Date orderDate = (Date) BeanUtil.invokeGet(order, "orderDate");
         System.err.println(orderDate);
-        Entity.invokeSet(order,"orderDate", new Date(2012-1900, 12 ,12));
+        BeanUtil.invokeSet(order,"orderDate", new Date(2012-1900, 12 ,12));
         System.err.println(order.getOrderDate());
     }
 

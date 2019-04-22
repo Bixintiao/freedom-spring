@@ -48,10 +48,6 @@ public class LambdaTest {
      */
     @Test
     public void sum(){
-        List<User> users = Arrays.asList(new User(new BigDecimal(1000))
-                , new User(new BigDecimal(300))
-                , new User(new BigDecimal(20))
-                , new User(new BigDecimal(599)));
     }
 
 
