@@ -39,6 +39,10 @@ public class DateUtil {
         private final static List<String> DEFAULT_PATTERNS = Arrays.asList("EEE MMM dd HH:mm:ss Z yyyy","dd MMM yyyy HH:mm:ss zzz","dd MMM yyyy HH:mm:ss ZZZ");
 
 
+        public static Date getNow(){
+            return Calendar.getInstance().getTime();
+        }
+
         public static Date parseString(String dateStr) throws Exception {
             return parseString(dateStr,null,null);
         }
@@ -70,8 +74,7 @@ public class DateUtil {
                                 simpleDateFormat.applyPattern(fmt);
                             try {
                                 return simpleDateFormat.parse(dateStr);
-                            } catch (Exception e){
-                            }
+                            } catch (Exception e){}
                         }
                     }
 

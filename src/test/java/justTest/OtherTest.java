@@ -1,5 +1,7 @@
 package justTest;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.hzy.modules.user.mapper.SysUserMapper;
 import com.hzy.modules.user.vo.SysUser;
@@ -77,6 +79,16 @@ public class OtherTest {
         String str = "com.hzy.modules.cxfWebService.service";
         System.out.println(StringUtil.reversePackage(str));
     }
+
+
+    @Test
+    public void test4(){
+        JSONObject jsonObject = new JSONObject();
+        JSONArray dataList = new JSONArray();
+        jsonObject.put("dataList", dataList);
+        System.out.println(jsonObject.toString());
+    }
+
 
 
 }

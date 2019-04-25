@@ -11,7 +11,11 @@ function formatDate(dateStr,fmt){
     var date = new Date(dateStr);
     var obj = {
         "y+" : date.getFullYear(),
-        "M+" : date.getMonth()+1,
+        "M+" : function () {
+            var month = (date.getMonth()+1)+"";
+            month = month.length == 1 ? "0"+month : month;
+            return month;
+        },
         "q+" : Math.floor((date.getMonth()+3)/3), //季度
         "d+" : date.getDate(),
         "H+" : date.getHours(),
@@ -38,7 +42,14 @@ function isAvailable(var1){
     return true;
 }
 
-
+/**
+ * 打印带有颜色
+ * @param message
+ * @param color (RGB, color e)
+ */
+function log(message,color){
+    console.log("%c"+message, "color:"+color);
+}
 
 
 

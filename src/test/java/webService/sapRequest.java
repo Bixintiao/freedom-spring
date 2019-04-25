@@ -59,7 +59,7 @@ public class sapRequest {
 
 
     private static CastorMarshaller castorMarshaller = null;
-    static {
+    public void initCastorMarshaller(){
         ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:spring/spring-oxm.xml");
         castorMarshaller = (CastorMarshaller) ctx.getBean("castorMarshaller");
     }
@@ -127,6 +127,7 @@ public class sapRequest {
 
     @Test
     public void marsh() throws IOException, ParserConfigurationException {
+        initCastorMarshaller();
         VoucherTitle voucherTitle = new VoucherTitle();
         voucherTitle.setBldat("1231");
         voucherTitle.setKursf(BigDecimal.ONE);
@@ -154,33 +155,37 @@ public class sapRequest {
 
     @Test
     public void test03() throws SOAPException, TransformerException {
-        QName serviceName = new QName("http://erp07.minmetals.com.cn", "ZWLY_WS_PZ", "minmetals");
-        QName portName = new QName("http://erp07.minmetals.com.cn", "ZWLY_WS_PZ");
-        javax.xml.ws.Service service = javax.xml.ws.Service.create(serviceName);
-        service.addPort(portName, SOAPBinding.SOAP11HTTP_BINDING, addr2);
+        String location = "http://ERP07.minmetals.com.cn:8001/sap/bc/srt/rfc/sap/zco_wly_service_pz/200/zwly_ws_pz/zwly_ws_pz";
+        String nameSpace = "urn:sap-com:document:sap:soap:functions:mc-style";
+        String serviceName = "ZWLY_WS_PZ";
+        String portName = "ZCO_WLY_SERVICE_PZ";
+        String operationName = "ZfwlyReceiveData";
 
 
-        Dispatch<SOAPMessage> dispatch = service.createDispatch(portName,
-                SOAPMessage.class, javax.xml.ws.Service.Mode.MESSAGE);
-        MessageFactory mf = MessageFactory.newInstance(SOAPConstants.SOAP_1_1_PROTOCOL);
-        SOAPMessage soapMessage = mf.createMessage();
-        SOAPPart part = soapMessage.getSOAPPart();
-        SOAPEnvelope envelope = part.getEnvelope();
-        envelope.addNamespaceDeclaration("minmetals", "http://erp07.minmetals.com.cn");
+        QName serviceQ = new QName(nameSpace, serviceName);
+        QName portQ = new QName(nameSpace, portName);
+        javax.xml.ws.Service service = javax.xml.ws.Service.create(serviceQ);
+        service.addPort(portQ, SOAPBinding.SOAP12HTTP_BINDING, location);
+
+        Dispatch<SOAPMessage> dispatch = service.createDispatch(portQ, SOAPMessage.class, javax.xml.ws.Service.Mode.MESSAGE);
+        SOAPMessage message = MessageFactory.newInstance(SOAPConstants.SOAP_1_2_PROTOCOL).createMessage();
+        SOAPPart soapPart = message.getSOAPPart();
+        SOAPEnvelope envelope = soapPart.getEnvelope();
+        envelope.addNamespaceDeclaration("urn", nameSpace);
+        //SOAPHeader header = envelope.getHeader();
         SOAPBody body = envelope.getBody();
-        SOAPElement operation = body.addChildElement("ZfwlyReceiveData");
 
+        SOAPElement operation = body.addChildElement(new QName(nameSpace, operationName, "urn"));
+        operation.addChildElement("PInput");
+        SOAPElement pYwxt = operation.addChildElement("PYwxt");
+        pYwxt.setTextContent("B");
 
-        SOAPMessage response = dispatch.invoke(soapMessage);
-        SOAPBody soapBody = response.getSOAPBody();
-        StringWriter writer = new StringWriter();
-        Transformer transformer = TransformerFactory.newInstance().newTransformer();
-        transformer.transform(new DOMSource(soapBody), new StreamResult(writer));
-        transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
-        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-        String xml = writer.toString();
-        System.out.println("----------------------------------");
-        System.out.println(xml);
+        System.out.println("请求 -> -> -> ->:");
+        System.out.println(JavaxUtil.soapMessageToString(message));
+
+        SOAPMessage invoke = dispatch.invoke(message);
+        System.out.println("响应 -> -> -> ->:");
+        System.out.println(JavaxUtil.soapMessageToString(invoke));
     }
 
 

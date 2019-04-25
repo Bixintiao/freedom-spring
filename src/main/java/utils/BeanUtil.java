@@ -138,7 +138,7 @@ public class BeanUtil{
         if (methodMap.containsKey(methodName))
             return methodMap.get(methodName);
         else
-            throw new Exception("no such method found");
+            throw new Exception("no this method found:"+methodName);
     }
 
     protected static Method getDeclaredMethod(Class clazz,String methodName,Class... paramTypes) throws NoSuchMethodException {

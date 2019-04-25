@@ -9,6 +9,6 @@ package utils.taskScheduler;
  */
 public interface Task {
 
-    <T> void executeTask(T t);
+    void executeTask(Object obj);
 
 }

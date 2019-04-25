@@ -3,6 +3,8 @@ package justTest;
 import org.junit.Test;
 import utils.base.Base;
 
+import java.util.logging.Level;
+
 /**
  * @author hzy
  * @version Revision:v1.0,Date:2019年01月12日
@@ -47,5 +49,13 @@ public class LoggerTest extends Base {
         }
     }
 
+
+    @Test
+    public void javaLogging(){
+        java.util.logging.Logger logger = java.util.logging.Logger.getLogger("2234");
+        logger.info("info message");
+        logger.log(Level.WARNING,"warning ");
+        logger.log(Level.SEVERE," . . . ");
+    }
 
 }

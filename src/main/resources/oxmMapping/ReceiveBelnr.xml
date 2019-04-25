@@ -13,8 +13,5 @@
         <field name="monat" type="string" required="true" >
             <bind-xml name="MONAT" node="element"/>
         </field>
-        <field name="hkont" type="string" required="true" >
-            <bind-xml name="HKONT" node="element"/>
-        </field>
     </class>
 </mapping>

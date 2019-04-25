@@ -1,6 +1,8 @@
 package justTest;
 
 import org.junit.Test;
+import utils.IOUtil;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -20,18 +22,13 @@ public class URLTest {
 
     @Test
     public void helloURL(){
-        String u = "http://localhost:8088/freedom-spring/getResponse";
+        String u = "http://localhost:8080/Minmetals-logistics-system/getjsonp?UserAcct=dev";
         String u1 = "https://www.baidu.com/";
         try {
-            URL url = new URL(u1);
+            URL url = new URL(u);
             URLConnection urlConn = url.openConnection();
             InputStream is = urlConn.getInputStream();
-
-            int len = 0;
-            byte[] buffer = new byte[1024];
-            while ((len = is.read(buffer)) != -1 ){
-                System.out.println(new String(buffer,0,len));
-            }
+            System.out.println(IOUtil.inputStreamToString(is, "utf-8"));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {

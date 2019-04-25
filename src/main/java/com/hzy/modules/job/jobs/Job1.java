@@ -13,7 +13,7 @@ public class Job1 implements Task {
 
 
     @Override
-    public <T> void executeTask(T t) {
+    public void executeTask(Object t) {
         System.out.println(" ::: executeTask   param -> " + t);
     }
 

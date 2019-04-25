@@ -22,7 +22,7 @@ public class JobController {
     public String startJob(String taskId) throws Exception {
         TaskSchedulerUtil.startScheduled(taskId, new Task() {
                 @Override
-                public <T> void executeTask(T t) {
+                public void executeTask(Object t) {
                         System.out.println("["+taskId+"] I'm a test task [" + t +"]");
                     }
                 }

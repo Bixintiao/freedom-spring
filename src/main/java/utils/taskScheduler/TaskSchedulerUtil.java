@@ -2,9 +2,6 @@ package utils.taskScheduler;
 
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.scheduling.support.CronTrigger;
-import utils.HttpUtil;
-import utils.StringUtil;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ScheduledFuture;
@@ -33,7 +30,7 @@ public class TaskSchedulerUtil {
     }
 
     //开启定时任务
-    public static <T> void startScheduled(String taskId, Task task, String corn, T param) throws Exception
+    public static void startScheduled(String taskId, Task task, String corn, Object param) throws Exception
     {
         ScheduledFuture<?> schedule = null;
         if (null != taskMap && taskMap.containsKey(taskId)) {
