@@ -4,10 +4,13 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
 <generatorConfiguration>
 
-    <!-- 本地数据库驱动程序jar包的全路径 -->
-    <classPathEntry location="drivers/ojdbc14.jar"/>
 
-    <context id="context" targetRuntime="MyBatis3">
+    <!-- 官网 http://www.mybatis.org/generator/configreference/context.html -->
+    <!-- 本地数据库驱动程序jar包的全路径 -->
+    <classPathEntry location="drivers/ojdbc7-1.7.jar"/>
+
+    <!-- defaultModelType="flat" 不设置表联合主键会生成两个文件 table.java tableKey.java -->
+    <context id="context" targetRuntime="MyBatis3" defaultModelType="flat">
 
         <!-- 表名或字段名为SQL关键字时自动添加分隔符 -->
         <property name="autoDelimitKeywords" value="true" />
@@ -22,9 +25,9 @@
 
         <!-- 数据库的相关配置 -->
         <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
-                        connectionURL="jdbc:oracle:thin:@localhost:1521:orcl"
-                        userId="oracle2018"
-                        password="orcl2018"/>
+                        connectionURL="jdbc:oracle:thin:@10.50.161.222:1521:DEV"
+                        userId="steeltrade"
+                        password="zaq1xsw2cde3"/>
 
 
         <!-- 定制 javaTypeResolver -->
@@ -50,7 +53,10 @@
         </javaClientGenerator>
 
         <!-- 相关表的配置 -->
-        <table tableName="SYS_USER" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false"/>
+        <table schema="xt" tableName="t_cr_credit_main_bak" domainObjectName="TcrCreditMainBak" enableCountByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false">
+            <columnRenamingRule searchString="^D_" replaceString=""/>
+        </table>
+
     </context>
 </generatorConfiguration>
