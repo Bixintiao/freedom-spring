@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 /**
- * @author zhengyu han
+ * @author hzy
  * @version Revision:v1.0,Date:2019年01月07日
  * @project freedom_spring
  * @description
@@ -150,10 +150,10 @@ public class StringUtil {
      */
     public static final byte[] hexStringToByte(String hex) {
         int len = (hex.length() / 2);
-        byte[] result = new byte[len];
-        char[] achar = hex.toCharArray();
-        for (int i = 0; i < len; i++) {
-            int pos = i * 2;
+            byte[] result = new byte[len];
+            char[] achar = hex.toCharArray();
+            for (int i = 0; i < len; i++) {
+                int pos = i * 2;
             result[i] = (byte) (toByte(achar[pos]) << 4 | toByte(achar[pos + 1]));
         }
         return result;

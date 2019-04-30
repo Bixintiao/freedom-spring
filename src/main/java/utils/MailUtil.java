@@ -2,9 +2,11 @@ package utils;
 
 import javax.mail.Message;
 import javax.mail.Session;
+import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Date;
+import java.util.Properties;
 
 /**
  * project freedom-spring
@@ -30,8 +32,19 @@ public class MailUtil {
 
 
 
-    public static void sendMail(String sendMail, String pwd, String content, String receiveMail){
+    public static void sendMail(String sendMail, String pwd, String content, String receiveMail)throws Exception{
+        Properties props = new Properties();
+        props.setProperty("mail.host","smtp.163.com");
+        props.setProperty("mail.transport.protocol", "smtp");
+        props.setProperty("mail.smtp.auth", "true");
 
+        Session session = Session.getInstance(props);
+        session.setDebug(true);
+        Transport ts = session.getTransport();
+        ts.connect(sendMail,pwd);
+        Message message = MailUtil.createMail(session, sendMail, receiveMail);
+        ts.sendMessage(message, message.getAllRecipients());
+        ts.close();
     }
 
 

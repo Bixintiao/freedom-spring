@@ -3,6 +3,7 @@ package justTest;
 import org.junit.Test;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
+import utils.EncryptUtil;
 import utils.StringUtil;
 
 import java.io.IOException;
@@ -63,6 +64,11 @@ public class EncryptTest {
 
 
 
+    @Test
+    public void test() throws NoSuchAlgorithmException {
+        System.out.println(EncryptUtil.messageDigest("256", "SHA-256"));
+        System.out.println(EncryptUtil.messageDigest("256", "SHA-256"));
+    }
 
 
 

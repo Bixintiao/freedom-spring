@@ -1,6 +1,6 @@
-package com.hzy.modules.cxfWebService.service.impl;
+package com.hzy.modules.cxfWS.service.impl;
 
-import com.hzy.modules.cxfWebService.service.HelloService;
+import com.hzy.modules.cxfWS.service.HelloService;
 import org.springframework.stereotype.Component;
 import javax.jws.WebService;
 import java.util.Calendar;
@@ -14,7 +14,7 @@ import java.util.Calendar;
  */
 
 @WebService(serviceName = "HelloService",
-        endpointInterface = "com.hzy.modules.cxfWebService.service.HelloService",
+        endpointInterface = "com.hzy.modules.cxfWS.service.HelloService",
         targetNamespace = "http://service.cxfWebService.modules.hzy.com")
 @Component("helloServiceImpl")
 public class HelloServiceImpl implements HelloService {

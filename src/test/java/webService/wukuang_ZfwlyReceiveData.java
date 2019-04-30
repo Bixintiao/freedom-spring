@@ -1,13 +1,9 @@
 package webService;
 
 
-import com.hzy.modules.oxm.entity.SimpleBean;
 import com.hzy.modules.oxm.entity.VoucherTitle;
 import org.apache.axis.client.Call;
 import org.apache.axis.client.Service;
-import org.exolab.castor.mapping.Mapping;
-import org.exolab.castor.mapping.MappingException;
-import org.exolab.castor.xml.*;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -24,38 +20,36 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.rpc.ServiceException;
 import javax.xml.soap.*;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMResult;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 import javax.xml.ws.Dispatch;
 import javax.xml.ws.soap.SOAPBinding;
 import java.io.*;
 import java.math.BigDecimal;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
  * project freedom-spring
- *
  * @Author hzy
  * @Date 2019/3/18 9:37
- * @Description version 1.0
+ * @Description 上传凭证到sap
  */
-public class sapRequest {
+public class wukuang_ZfwlyReceiveData {
 
+
+    //测试地址
     String addr1 = "http://10.1.1.15:8001/sap/bc/srt/wsdl/flv_10002A111AD1/bndg_url/sap/bc/srt/rfc/sap/zco_wly_service_pz/200/zwly_ws_pz/zwly_ws_pz?sap-client=200";
     String addr2 = "http://erp07.minmetals.com.cn:8001/sap/bc/srt/wsdl/flv_10002A111AD1/bndg_url/sap/bc/srt/rfc/sap/zco_wly_service_pz/200/zwly_ws_pz/zwly_ws_pz?sap-client=200";
-    String addr3 = "http://ERP07.minmetals.com.cn:8001/sap/bc/srt/rfc/sap/zco_wly_service_pz/200/zwly_ws_pz/zwly_ws_pz";
+    String test_location = "http://ERP07.minmetals.com.cn:8001/sap/bc/srt/rfc/sap/zco_wly_service_pz/200/zwly_ws_pz/zwly_ws_pz";
     String nameSpace = "urn:sap-com:document:sap:soap:functions:mc-style";
-    String serviceName = "ZWLY_WS_PZ";
-    String portName = "ZWLY_WS_PZ";
     String username = "zhangwy";
     String password = "password";
+
+
+    // uat 地址
+    String uat_location = "http://ERP05.minmetals.com.cn:8001/sap/bc/srt/rfc/sap/zco_wly_service_pz/800/zwly_ws_pz/zwly_ws_pz";
+    String uat_location_ = "http://10.1.1.13:8001/sap/bc/srt/rfc/sap/zco_wly_service_pz/800/zwly_ws_pz/zwly_ws_pz";
 
 
     private static CastorMarshaller castorMarshaller = null;
@@ -68,7 +62,7 @@ public class sapRequest {
     //使用http的方式
     @Test
     public void httpZfwlyReceiveData() throws IOException {
-        URL wsUrl = new URL(addr3);
+        URL wsUrl = new URL(test_location);
         HttpURLConnection conn = (HttpURLConnection)wsUrl.openConnection();
         conn.setDoInput(true);
         conn.setDoOutput(true);
@@ -105,7 +99,7 @@ public class sapRequest {
         String xml = IOUtil.fisReadFile("C:\\Users\\韩正禹\\Desktop\\sap.xml", "utf-8");
         System.err.println("xml:\n"+xml);
 
-        String endPoint = addr3;
+        String endPoint = test_location;
         Service service = new Service();
         Call call = (Call) service.createCall();
         call.setTargetEndpointAddress(new java.net.URL(endPoint));

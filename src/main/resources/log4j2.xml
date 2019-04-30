@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN" monitorInterval="300">
+
+    <Properties>
+        <Property name="baseDir">logs</Property>
+    </Properties>
+
     <Appenders>
-        <!-- standard output -->
+        <!-- standard output to console -->
         <Console name="stdout" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight{[%-5level]} [%20.30t] %20.36c -> %msg%n"/>
         </Console>
@@ -13,6 +18,14 @@
                 <CronTriggeringPolicy schedule="0 0 0 1/1 * ?" evaluateOnStartup="true" />
                 <SizeBasedTriggeringPolicy size="10MB" />
             </Policies>
+            <!-- debug 日志保存10天 -->
+            <DefaultRolloverStrategy>
+                <Delete basePath="${baseDir}" maxDepth="2">
+                <IfFileName glob="*/*debug*.log.zip">
+                    <IfLastModified age="10d" />
+                </IfFileName>
+                </Delete>
+            </DefaultRolloverStrategy>
         </RollingFile>
         <!-- logger error level message -->
         <RollingFile name="RollingFile_error" fileName="logs/error.log" filePattern="logs/$${date:yyyy-MM-dd}/error.%i.log.zip">
@@ -22,6 +35,14 @@
                 <CronTriggeringPolicy schedule="0 0 0 1/1 * ?" evaluateOnStartup="true" />
                 <SizeBasedTriggeringPolicy size="10MB" />
             </Policies>
+            <!-- error 日志保存30天 -->
+            <DefaultRolloverStrategy>
+                <Delete basePath="${baseDir}" maxDepth="2">
+                    <IfFileName glob="*/*error*.log.zip">
+                        <IfLastModified age="30d" />
+                    </IfFileName>
+                </Delete>
+            </DefaultRolloverStrategy>
         </RollingFile>
     </Appenders>
     <Loggers>
@@ -74,8 +95,8 @@
          %m: 输出代码中指定的消息,产生的日志具体信息
          %n: 输出一个回车换行符，Windows平台为"\r\n"，Unix平台为"\n"输出日志信息换行
          可以在%与模式字符之间加上修饰符来控制其最小宽度、最大宽度、和文本的对齐方式。如：
-                 1)%20c：指定输出category的名称，最小的宽度是20，如果category的名称小于20的话，默认的情况下右对齐。
-                 2)%-20c:指定输出category的名称，最小的宽度是20，如果category的名称小于20的话，"-"号指定左对齐。
-                 3)%.30c:指定输出category的名称，最大的宽度是30，如果category的名称大于30的话，就会将左边多出的字符截掉，但小于30的话也不会有空格。
+                 1)%20c：指定输出 category的名称，最小的宽度是20，如果category的名称小于20的话，默认的情况下右对齐。
+                 2)%-20c:指定输出 category的名称，最小的宽度是20，如果category的名称小于20的话，"-"号指定左对齐。
+                 3)%.30c:指定输出 category的名称，最大的宽度是30，如果category的名称大于30的话，就会将左边多出的字符截掉，但小于30的话也不会有空格。
                  4)%20.30c:如果category的名称小于20就补空格，并且右对齐，如果其名称长于30字符，就从左边较远输出的字符截掉。
     -->

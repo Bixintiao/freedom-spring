@@ -1,8 +1,10 @@
 package justTest;
 
 import org.junit.Test;
+import utils.IOUtil;
 import utils.base.Base;
 
+import java.io.IOException;
 import java.util.logging.Level;
 
 /**
@@ -51,11 +53,22 @@ public class LoggerTest extends Base {
 
 
     @Test
+    public void testRolling() throws IOException {
+        org.apache.logging.log4j.Logger logger = org.apache.logging.log4j.LogManager.getLogger(getClass());
+        String log = IOUtil.fisReadFile("C:\\Users\\韩正禹\\Desktop\\debug.1.log", "utf-8");
+        System.out.println(log);
+    }
+
+
+    @Test
     public void javaLogging(){
         java.util.logging.Logger logger = java.util.logging.Logger.getLogger("2234");
         logger.info("info message");
         logger.log(Level.WARNING,"warning ");
         logger.log(Level.SEVERE," . . . ");
     }
+
+
+
 
 }

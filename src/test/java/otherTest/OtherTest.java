@@ -143,7 +143,7 @@ public class OtherTest {
     public int getCnLength(String s){
         int cn = 0;
         String temp = null;
-        String reg_ = "[\\u4e00-\\u9fa5]";
+        String reg_ = "[\\u4e00-\\u9fa5]+";
         Pattern pattern = Pattern.compile(reg_);
         Matcher matcher = pattern.matcher(s);
         while (matcher.find()){

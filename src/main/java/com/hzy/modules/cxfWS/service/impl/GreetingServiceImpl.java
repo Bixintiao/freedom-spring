@@ -1,6 +1,7 @@
-package com.hzy.modules.cxfWebService.service.impl;
+package com.hzy.modules.cxfWS.service.impl;
 
-import com.hzy.modules.cxfWebService.service.GreetingService;
+import com.hzy.modules.cxfWS.service.GreetingService;
+
 import javax.jws.WebService;
 import java.util.Calendar;
 
@@ -13,7 +14,7 @@ import java.util.Calendar;
  */
 
 @WebService(serviceName = "GreetingService",
-        endpointInterface = "com.hzy.modules.cxfWebService.service.GreetingService",
+        endpointInterface = "com.hzy.modules.cxfWS.service.GreetingService",
         targetNamespace = "http://service.cxfWebService.modules.hzy.com")
 public class GreetingServiceImpl implements GreetingService {
 

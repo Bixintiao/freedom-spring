@@ -36,4 +36,15 @@ public class URLTest {
         }
     }
 
+
+    @Test
+    public void baidu() throws Exception {
+        URL url = new URL("http://localhost:8080/Minmetals-logistics-system/getjsonp?UserAcct=dev");
+        Object content = url.getContent();
+        URLConnection urlConnection = url.openConnection();
+        InputStream inputStream = urlConnection.getInputStream();
+        System.out.println(IOUtil.inputStreamToString(inputStream));
+    }
+
+
 }

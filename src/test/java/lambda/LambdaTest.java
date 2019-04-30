@@ -67,7 +67,6 @@ public class LambdaTest {
 
 
 
-
     @Test
     public void predicateTest(){
         PredicateDemo predicateDemo = new PredicateDemo();

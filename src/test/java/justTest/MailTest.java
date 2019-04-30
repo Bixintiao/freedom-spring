@@ -6,9 +6,6 @@ import utils.MailUtil;
 import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import java.util.Date;
 import java.util.Properties;
 
 /**
@@ -41,7 +38,5 @@ public class MailTest {
         ts.sendMessage(message, message.getAllRecipients());
         ts.close();
     }
-
-
 
 }

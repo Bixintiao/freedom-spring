@@ -38,7 +38,7 @@ public class JavaxUtil {
             try {
                 javax.xml.transform.Transformer t = tfac.newTransformer();
                 t.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-                //t.setOutputProperty(OutputKeys.INDENT, "yes");
+                t.setOutputProperty(OutputKeys.INDENT, "yes");
                 t.setOutputProperty(OutputKeys.METHOD, "xml"); // xml, html,
                 // text
                 t.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");

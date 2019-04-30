@@ -1,4 +1,4 @@
-package com.hzy.modules.cxfWebService.service;
+package com.hzy.modules.cxfWS.service;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -8,15 +8,13 @@ import javax.jws.WebService;
  * project freedom-spring
  *
  * @Author hzy
- * @Date 2019/3/6 18:29
+ * @Date 2019/3/7 9:46
  * @Description version 1.0
  */
-
 @WebService(targetNamespace = "http://service.cxfWebService.modules.hzy.com")
-public interface GreetingService {
+public interface HelloService {
 
     @WebMethod
-    String greeting(@WebParam(name="username")String userName);
-
+    String sayHello(@WebParam(name = "userName") String userName);
 
 }

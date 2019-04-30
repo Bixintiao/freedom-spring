@@ -36,12 +36,12 @@ import java.util.List;
 
 /**
  * project freedom-spring
- *
  * @Author hzy
  * @Date 2019/4/10 14:22
  * @Description version 1.0
+ * 物流园业务系统获取制造费用凭证信息
  */
-public class zwly_ws_query {
+public class wukuang_ZfwlyReceiveBelnr {
 
     String wsdl = "http://ERP07.minmetals.com.cn:8001/sap/bc/srt/wsdl/flv_10002A111AD1/bndg_url/sap/bc/srt/rfc/sap/zco_wly_service_query/200/zwly_ws_query/zwly_ws_query?sap-client=200";
     String addr = "http://ERP07.minmetals.com.cn:8001/sap/bc/srt/rfc/sap/zco_wly_service_query/200/zwly_ws_query/zwly_ws_query";

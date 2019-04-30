@@ -1,6 +1,7 @@
-package plugin.filter;
+package com.hzy.plugins.filter;
 
 import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Enumeration;
 
@@ -34,6 +35,10 @@ public class BaseFilter implements Filter {
 
 
     void print(ServletRequest request){
+
+        HttpServletRequest r = (HttpServletRequest) request;
+        r.getSession().setAttribute("loginUser","aa");
+
         System.out.println("ContentType:"+request.getContentType());
         System.out.println("LocalName:"+request.getLocalName());
         System.out.println("LocalAddr:"+request.getLocalAddr());

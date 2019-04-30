@@ -1,18 +1,13 @@
 package justTest;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.hzy.modules.user.mapper.SysUserMapper;
 import com.hzy.modules.user.vo.SysUser;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
-import utils.DateUtil;
 import utils.StringUtil;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 /**
@@ -69,7 +64,7 @@ public class OtherTest {
     @Test
     public void testReverse(){
         System.out.println(
-                StringUtil.reverse("com.hzy.modules.cxfWebService.service")
+            StringUtil.reverse("com.hzy.modules.cxfWebService.service")
         );
     }
 
@@ -80,14 +75,12 @@ public class OtherTest {
         System.out.println(StringUtil.reversePackage(str));
     }
 
-
     @Test
-    public void test4(){
-        JSONObject jsonObject = new JSONObject();
-        JSONArray dataList = new JSONArray();
-        jsonObject.put("dataList", dataList);
-        System.out.println(jsonObject.toString());
+    public void testNumberToString(){
+        System.out.println(1/0);
     }
+
+
 
 
 

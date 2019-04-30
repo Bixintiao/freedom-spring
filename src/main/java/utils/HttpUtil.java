@@ -11,6 +11,9 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 
 
 /**
@@ -64,6 +67,14 @@ public class HttpUtil {
             response = EntityUtils.toString(result.getEntity(), "utf-8");
         }
         return response;
+    }
+
+
+    public static String URLConnection(String url)throws Exception{
+        URL u = new URL(url);
+        URLConnection urlConnection = u.openConnection();
+        InputStream inputStream = urlConnection.getInputStream();
+        return IOUtil.inputStreamToString(inputStream);
     }
 
 

@@ -9,7 +9,7 @@
 
 
     <!-- 扫描注解 -->
-    <context:component-scan base-package="com.hzy.modules" >
+    <context:component-scan base-package="com.hzy" >
     </context:component-scan>
 
     <!-- 数据源 -->
@@ -29,7 +29,7 @@
 
 
     <!-- cxf 配置 webservice 手动配置 bean greetingImpl  -->
-    <bean id="greetingServiceImpl" class="com.hzy.modules.cxfWebService.service.impl.GreetingServiceImpl"/>
+    <bean id="greetingServiceImpl" class="com.hzy.modules.cxfWS.service.impl.GreetingServiceImpl"/>
     <jaxws:endpoint id="greetingService"  implementor="#greetingServiceImpl"   address="/GreetingService" />
 
     <!-- bean helloServiceImpl 使用 @Component 注解注入  -->

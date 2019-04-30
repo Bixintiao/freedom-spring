@@ -54,34 +54,33 @@ public class DateUtil {
 
         public static Date parseString(String dateStr, String dateFmt, Locale locale) throws Exception {
             SimpleDateFormat simpleDateFormat = null;
-            if(null == dateStr || dateStr.trim().equals("")){
+            if(null == dateStr || dateStr.trim().equals(""))
                 return null;
-            } else {
-                if (null == dateFmt || dateStr.trim().equals("")) {
-                    String format = matchDateFormat(dateStr);
-                    if (null != format){
-                        simpleDateFormat = new SimpleDateFormat(format);
-                        return simpleDateFormat.parse(dateStr.replaceAll("[-/:\\.\\s]",""));
-                    }
-                    if(matcherFind("[a-zA-Z]+",dateStr))
-                    {
-                        simpleDateFormat = new SimpleDateFormat(dateFmt,Locale.US);
-                        for(String fmt : DEFAULT_PATTERNS)
-                        {
-                            if (null == simpleDateFormat)
-                                simpleDateFormat = new SimpleDateFormat(fmt);
-                            else
-                                simpleDateFormat.applyPattern(fmt);
-                            try {
-                                return simpleDateFormat.parse(dateStr);
-                            } catch (Exception e){}
-                        }
-                    }
-
+            if (null == dateFmt || dateStr.trim().equals("")) {
+                //1,use regex
+                String format = matchDateFormat(dateStr);
+                if (null != format){
+                    simpleDateFormat = new SimpleDateFormat(format);
+                    return simpleDateFormat.parse(dateStr.replaceAll(split,""));
                 }
-                simpleDateFormat = null == locale ? new SimpleDateFormat(dateFmt) : new SimpleDateFormat(dateFmt,locale);
-                return simpleDateFormat.parse(dateStr);
+                //2,use default pattern
+                if(matcherFind("[a-zA-Z]+",dateStr)){
+                    simpleDateFormat = new SimpleDateFormat(dateFmt,Locale.US);
+                    for(String fmt : DEFAULT_PATTERNS){
+                        if (null == simpleDateFormat)
+                            simpleDateFormat = new SimpleDateFormat(fmt);
+                        else
+                            simpleDateFormat.applyPattern(fmt);
+                        try {
+                            return simpleDateFormat.parse(dateStr);
+                        } catch (Exception e){}
+                    }
+                }
             }
+            if(dateFmt == null)
+                throw new Exception("not match dateFmt ...");
+            simpleDateFormat = null == locale ? new SimpleDateFormat(dateFmt) : new SimpleDateFormat(dateFmt,locale);
+            return simpleDateFormat.parse(dateStr);
         }
 
 
@@ -124,12 +123,14 @@ public class DateUtil {
 
 
     static Map<String, String> datePattern = new HashMap<>();
+    static final String split = "[-/:\\.\\s]*";
     static {
-        //[-/:\\.]
-        datePattern.put("^\\d{4}[-/:\\.]{1}\\d{2}[-/:\\.]{1}\\d{2}$","yyyyMMdd");
-        datePattern.put("^\\d{4}[-/:\\.]{1}\\d{2}[-/:\\.]{1}\\d{2}\\s*\\d{2}[-/:\\.]{1}\\d{2}$","yyyyMMddHHmm");
-        datePattern.put("^\\d{4}[-/:\\.]{1}\\d{2}[-/:\\.]{1}\\d{2}\\s*\\d{2}[-/:\\.]{1}\\d{2}[-/:\\.]{1}\\d{2}$","yyyyMMddHHmmss");
-        datePattern.put("^\\d{4}[-/:\\.]{1}\\d{2}[-/:\\.]{1}\\d{2}\\s*\\d{2}[-/:\\.]{1}\\d{2}[-/:\\.]{1}\\d{2}[-/:\\.]{1}\\d{3}$","yyyyMMddHHmmssSSS");
+        datePattern.put("^\\d{4}"+split+"\\d{2}","yyyyMM");
+        datePattern.put("^\\d{2}"+split+"\\d{2}"+split+"\\d{2}\\s*\\d{2}"+split+"\\d{2}$","yyMMddHHmm");
+        datePattern.put("^\\d{4}"+split+"\\d{2}"+split+"\\d{2}$","yyyyMMdd");
+        datePattern.put("^\\d{4}"+split+"\\d{2}"+split+"\\d{2}\\s*\\d{2}"+split+"\\d{2}$","yyyyMMddHHmm");
+        datePattern.put("^\\d{4}"+split+"\\d{2}"+split+"\\d{2}\\s*\\d{2}"+split+"\\d{2}"+split+"\\d{2}$","yyyyMMddHHmmss");
+        datePattern.put("^\\d{4}"+split+"\\d{2}"+split+"\\d{2}\\s*\\d{2}"+split+"\\d{2}"+split+"\\d{2}"+split+"\\d{3}$","yyyyMMddHHmmssSSS");
     }
 
         /**

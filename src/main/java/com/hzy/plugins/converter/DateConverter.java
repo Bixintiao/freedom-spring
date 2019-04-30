@@ -1,4 +1,4 @@
-package plugin.converter;
+package com.hzy.plugins.converter;
 
 import org.springframework.core.convert.converter.Converter;
 
