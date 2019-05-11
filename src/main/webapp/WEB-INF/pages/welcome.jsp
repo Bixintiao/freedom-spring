@@ -6,5 +6,10 @@
 </head>
 <body>
         welcome
+
+    <form action="">
+
+    </form>
+
 </body>
 </html>

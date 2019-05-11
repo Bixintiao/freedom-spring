@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.hzy.modules.Constants;
 import com.hzy.modules.user.service.UserService;
 import com.hzy.plugins.springContext.SpringContextUtil;
+import entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
@@ -31,7 +32,7 @@ import java.util.List;
 public class HelloController {
 
     org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger(getClass());
-
+    final static String SUCCESS = "success";
     /**
      * @return
      * http://localhost:9099/hello.d
@@ -102,12 +103,26 @@ public class HelloController {
     }
 
 
+    /**
+     * 异常测试
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/exec")
-    public String goException(){
+    public String getException(){
         int a = 1/0;
         return "success";
     }
+
+
+    @ResponseBody
+    @RequestMapping("/transParam")
+    public String transParam(User user){
+        System.out.println(user.toString());
+        return SUCCESS;
+    }
+
+
 
 
 }

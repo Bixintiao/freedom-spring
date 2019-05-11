@@ -39,6 +39,8 @@ public class BaseFilter implements Filter {
         HttpServletRequest r = (HttpServletRequest) request;
         r.getSession().setAttribute("loginUser","aa");
 
+
+        System.out.println("ContextPath:"+((HttpServletRequest) request).getContextPath());
         System.out.println("ContentType:"+request.getContentType());
         System.out.println("LocalName:"+request.getLocalName());
         System.out.println("LocalAddr:"+request.getLocalAddr());

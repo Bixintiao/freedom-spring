@@ -54,9 +54,8 @@ public class BeanUtil{
     private static <T> T transMapToBean(Map<String, Object> map, Class<T> clazz, T t) throws Exception {
         Objects.requireNonNull(map, "map must not be null");
         if (clazz == null && t == null)
-            throw new Exception("target clazz|t are not defined");
-        if (t == null)
-            t = clazz.newInstance();
+            throw new Exception("target clazz t are not defined");
+        if (t == null) t = clazz.newInstance();
         Set<String> keys = map.keySet();
         for (String key:keys){
             try {
@@ -94,15 +93,14 @@ public class BeanUtil{
     }
 
     private static <T> Object invoke(T t, Method method, String methodName, Object... args) throws Exception {
-        if (null == t){
-            throw new Exception("param t is null ");
-        }
+        Objects.requireNonNull(t, "param t is null.");
         if (null == method && null == methodName){
             throw new Exception("param method and methodName is null ");
         }
         if (null == method){
-            method = getMethodByName(t.getClass(),methodName);
+            method = getMethodByName(t.getClass(), methodName);
         }
+        method.setAccessible(true);
         return method.invoke(t, args);
     }
 
@@ -148,9 +146,8 @@ public class BeanUtil{
     protected static Method[] getDeclaredMethods(Class clazz){
         Method[] declaredMethods = clazz.getDeclaredMethods();
         if (null == methodMap)
-            methodMap = new HashMap<String,Method>();
-        if (null != clazz.getSuperclass() &&
-                !clazz.getSuperclass().getName().equals("java.lang.Class"))
+            methodMap = new HashMap<>();
+        if (null != clazz.getSuperclass() && !clazz.getSuperclass().getName().equals("java.lang.Class"))
             getDeclaredMethods(clazz.getSuperclass());
         for (Method m : declaredMethods)
             methodMap.put(m.getName(), m);

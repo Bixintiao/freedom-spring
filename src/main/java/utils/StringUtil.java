@@ -22,9 +22,8 @@ public class StringUtil {
      * @return
      */
     public static String toUnderline(String line){
-        if (null == line || "".equals(line.trim())){
+        if (null == line || "".equals(line.trim()))
             return "";
-        }
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i<line.length(); i++){
             char c = line.charAt(i);
@@ -170,7 +169,7 @@ public class StringUtil {
      * @param bArray
      * @return
      */
-    public static final String bytesToHexString(byte[] bArray) {
+    public static String bytesToHexString(byte[] bArray) {
         StringBuffer sb = new StringBuffer(bArray.length);
         String sTemp;
         for (int i = 0; i < bArray.length; i++) {
@@ -181,6 +180,48 @@ public class StringUtil {
         }
         return sb.toString();
     }
+
+
+    public static String toBinaryString(int a){
+        return Integer.toBinaryString(a);
+    }
+
+
+    /**
+     * 半角转全角
+     * @param input String.
+     * @return 全角字符串.
+     */
+    public static String toSBC(String input) {
+        char c[] = input.toCharArray();
+        for (int i = 0; i < c.length; i++) {
+            if (c[i] == ' ') {
+                c[i] = '\u3000';
+            } else if (c[i] < '\177') {
+                c[i] = (char) (c[i] + 65248);
+            }
+        }
+        return new String(c);
+    }
+
+    /**
+     * 全角转半角
+     * @param input String.
+     * @return 半角字符串
+     */
+    public static String toDBC(String input) {
+        char c[] = input.toCharArray();
+        for (int i = 0; i < c.length; i++) {
+            if (c[i] == '\u3000') {
+                c[i] = ' ';
+            } else if (c[i] > '\uFF00' && c[i] < '\uFF5F') {
+                c[i] = (char) (c[i] - 65248);
+            }
+        }
+        String returnString = new String(c);
+        return returnString;
+    }
+
 
 
 }

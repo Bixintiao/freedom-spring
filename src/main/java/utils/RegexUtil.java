@@ -26,14 +26,18 @@ public class RegexUtil {
     }
 
 
-    public static List<String> matchFindAll(String pattern, String line){
+    /**
+     * 找到全部符合 pattern 的内容
+     * @param pattern
+     * @param line
+     * @return
+     */
+    public static List<String> matchFindAll(String line, String pattern){
         List<String> allMatches = new ArrayList<>();
         Matcher matcher = Pattern.compile(pattern).matcher(line);
-        while (matcher.find()){
-            for (int i=0; i<=matcher.groupCount(); i++){
+        while (matcher.find())
+            for (int i=0; i<=matcher.groupCount(); i++)
                 allMatches.add(matcher.group(i));
-            }
-        }
         return allMatches;
     }
 

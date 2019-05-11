@@ -5,7 +5,9 @@ import com.hzy.modules.user.mapper.SysUserMapper;
 import com.hzy.modules.user.vo.SysUser;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import utils.DateUtil;
 import utils.StringUtil;
+import utils.taskScheduler.Task;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -77,9 +79,9 @@ public class OtherTest {
 
     @Test
     public void testNumberToString(){
-        System.out.println(1/0);
+        Date monthLastDay = DateUtil.getMonthLastDay(new Date());
+        System.out.println(DateUtil.formatDate(monthLastDay, "yyyy-MM-dd"));
     }
-
 
 
 

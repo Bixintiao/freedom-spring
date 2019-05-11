@@ -148,4 +148,19 @@ public class DateUtil {
         }
 
 
+    /**
+     * 获取本月最后一天
+     * @param date
+     * @return
+     */
+    public static Date getMonthLastDay(Date date){
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        c.set(Calendar.DATE, 1);
+        c.set(Calendar.MONTH, c.get(Calendar.MONTH)+1);
+        c.set(Calendar.DATE, c.get(Calendar.DATE)-1);
+        return c.getTime();
+    }
+
+
 }

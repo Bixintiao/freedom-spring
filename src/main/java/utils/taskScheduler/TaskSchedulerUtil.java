@@ -25,21 +25,21 @@ public class TaskSchedulerUtil {
     }
 
 
-    public static <T> void startScheduled(String taskId, Task task, String corn) throws Exception{
-        startScheduled(taskId, task, corn, null);
+    public static ScheduledFuture<?> startScheduled(String taskId, Task task, String corn) throws Exception{
+        return startScheduled(taskId, task, corn, null);
     }
 
     //开启定时任务
-    public static void startScheduled(String taskId, Task task, String corn, Object param) throws Exception
+    public static ScheduledFuture<?> startScheduled(String taskId, Task task, String corn, Object param) throws Exception
     {
-        ScheduledFuture<?> schedule = null;
         if (null != taskMap && taskMap.containsKey(taskId)) {
             throw new Exception("duplicate task Id. already exist.");
         }
-        schedule = threadPoolTaskScheduler.schedule(()->{
+        ScheduledFuture<?> schedule = threadPoolTaskScheduler.schedule(()->{
             task.executeTask(param);
         }, new CronTrigger(corn));
         taskMap.put(taskId, schedule);
+        return schedule;
     }
 
 
@@ -55,7 +55,7 @@ public class TaskSchedulerUtil {
     }
 
 
-    //获取线程执行定时任务
+    //获取线程
     private static ThreadPoolTaskScheduler getThreadPool(){
         if (null == threadPoolTaskScheduler){
             threadPoolTaskScheduler = new ThreadPoolTaskScheduler();

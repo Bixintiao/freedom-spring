@@ -45,7 +45,7 @@ public class EncryptUtil {
      * @throws NoSuchAlgorithmException
      */
     public static String messageDigest(String str, String encryptMethod) throws NoSuchAlgorithmException {
-        Objects.requireNonNull(encryptMethod,"place confirm your encryptMethod is not null ...");
+        Objects.requireNonNull(encryptMethod,"encryptMethod must not null ...");
         MessageDigest md5 = MessageDigest.getInstance(encryptMethod);
         byte[] bytes = md5.digest(str.getBytes());
         return StringUtil.bytesToHexString(bytes);

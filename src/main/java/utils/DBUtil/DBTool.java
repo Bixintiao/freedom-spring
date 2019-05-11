@@ -23,7 +23,7 @@ public class DBTool {
 
 
     @Test
-    public void executeSqlTest(){
+    public void executeSqlTest() throws SQLException, ClassNotFoundException {
         String sql = "select * from SYS_USER where create_time>? ";
         Connection conn = Connector.getConnection();
         try {
@@ -96,7 +96,7 @@ public class DBTool {
         return sb.toString();
     }
 
-    public static ResultSetMetaData getResultSetMetaData(String tableName) throws SQLException {
+    public static ResultSetMetaData getResultSetMetaData(String tableName) throws Exception {
         String sql = "select * from "+tableName+" where 1<>1";
         ResultSet rs = executeQuery(sql);
         return rs.getMetaData();
@@ -110,7 +110,7 @@ public class DBTool {
      * @return
      * @throws SQLException
      */
-    public static ResultSet executeQuery(String sql) throws SQLException{
+    public static ResultSet executeQuery(String sql) throws Exception{
         return executeQuery(sql,null);
     }
 
@@ -123,7 +123,7 @@ public class DBTool {
      * @return
      * @throws SQLException
      */
-    public static ResultSet executeQuery(String sql,Object[] params) throws SQLException {
+    public static ResultSet executeQuery(String sql,Object[] params) throws Exception {
         Connection conn = Connector.getConnection();
         PreparedStatement ps = conn.prepareStatement(sql);
         if (sql.contains("?")){
@@ -168,16 +168,6 @@ public class DBTool {
                     java.util.Date d = (java.util.Date)param;
                     ps.setDate(i, new java.sql.Date(d.getTime()));
                 }
-                else if (param instanceof java.lang.Object)
-                    ps.setBlob(i, (java.sql.Blob) param);
-                else if (param instanceof java.sql.Date)
-                    ps.setDate(i,(java.sql.Date) param);
-                else if (param instanceof java.sql.Array)
-                    ps.setArray(i, (java.sql.Array) param);
-                else if (param instanceof java.math.BigDecimal)
-                    ps.setBigDecimal(i, (java.math.BigDecimal) param);
-                else if (param instanceof java.sql.Blob)
-                    ps.setBlob(i, (java.sql.Blob) param);
             }
         }
         return ps;
@@ -212,7 +202,7 @@ public class DBTool {
 
 
 
-    public Set<String> getAllTableNames(String dbType) throws SQLException {
+    public Set<String> getAllTableNames(String dbType) throws Exception {
         Set<String> tableNames = new HashSet<>();
         String type = dbType.toLowerCase();
         ResultSet resultSet = null ;

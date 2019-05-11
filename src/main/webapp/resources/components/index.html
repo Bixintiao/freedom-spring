@@ -13,13 +13,9 @@
 <body>
     hello .html
     <script type="text/javascript">
-        var date = new Date();
-        var fmt = formatDate(date,"yyyy-MM-dd");
-        console.log(fmt);
-
-
-        log("喜提彩蛋...","#f74338");
-
+        console.log(Util.formatDate(new Date(), "yyyy-MM-dd"));
+        Util.log("喜提彩蛋...", "#f74338");
+        Util.log("喜提彩蛋...", "red");
     </script>
 </body>
 </html>

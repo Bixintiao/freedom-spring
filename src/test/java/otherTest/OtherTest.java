@@ -1,6 +1,9 @@
 package otherTest;
 
+import com.alibaba.druid.stat.TableStat;
+import com.alibaba.druid.support.jconsole.util.TableDataProcessor;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.hzy.modules.interface_.person.Hunter;
 import entity.User;
 import org.junit.Test;
@@ -8,9 +11,11 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import utils.BeanUtil;
-import utils.DateUtil;
-import utils.RegexUtil;
+import utils.*;
+import utils.DBUtil.Column;
+import utils.DBUtil.Connector;
+import utils.DBUtil.PrepareSql;
+import utils.DBUtil.Result;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -24,9 +29,12 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Type;
 import java.math.BigDecimal;
+import java.sql.*;
 import java.text.DecimalFormat;
 import java.util.*;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -155,6 +163,75 @@ public class OtherTest {
         return cn;
     }
 
+
+
+    @Test
+    public void testZ(){
+        System.out.println(Integer.toBinaryString(60));
+        System.out.println(Integer.toBinaryString(13));
+
+        System.out.println(1 << 2);
+        System.out.println(~1);
+    }
+
+
+    @Test
+    public void invTest(){
+        T1 t = new T1();
+        invoke(t, "doA", null, null);
+        invoke(t, "doB", new Class[]{String.class}, new Object[]{"BB"});
+    }
+
+
+    public void invoke(Object o, String name, Class[] classes, Object[] args){
+        try {
+            T1.class.getMethod(name, classes).invoke(o,args);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+    }
+
+    class T1{
+
+        public void doA(){
+            System.out.println("doA");
+        }
+        public void doB(String b){
+            System.out.println("doB:"+b);
+        }
+
+    }
+
+
+
+
+    @Test
+    public void testCC() throws Exception{
+        String sql = IOUtil.fisReadFile("C:\\Users\\韩正禹\\Desktop\\temp.txt", "utf-8");
+        Connection conn = Connector.getConnection();
+        PreparedStatement ps = PrepareSql.preparedStatement(conn, sql, new String[]{"segNo"}, new Object[]{"00501"});
+        ResultSet resultSet = ps.executeQuery();
+
+        List<Column> columns = Result.getColumns(resultSet.getMetaData());
+        for (Column column : columns) {
+            System.out.println(column.toString());
+        }
+
+        Map<String, Object> map = Result.toMap(resultSet);
+        System.out.println(map);
+    }
+
+    /*
+    * 6  5
+    * 6 - 5 = 1
+    * 5 - 1 = 4
+    * 6 - 4 = 2
+    * 5 - 2 = 3
+    * */
 
 
 }

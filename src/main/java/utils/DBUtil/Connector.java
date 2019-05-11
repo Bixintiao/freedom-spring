@@ -15,25 +15,24 @@ import java.sql.*;
 
 public class Connector {
 
-    /*
-    * mvn install:install-file -Dfile=E:\ojdbc14.jar -DgroupId=com.hzy -DartifactId=oracle.jdbc -Dversion=ojdbc14 -Dpackaging=jar
-    *
-    * */
-
-
     static Connection conn = null;
+    static String className = "oracle.jdbc.driver.OracleDriver";
+    static String url = "jdbc:oracle:thin:@10.50.161.222:1521:DEV";
+    static String name = "steeltrade";
+    static String pwd = "zaq1xsw2cde3";
 
     @Test
-    public void ConnectOracleTest(){
-        conn = getConnection();
+    public void ConnectOracleTest() throws SQLException, ClassNotFoundException {
+        getConnection();
         try {
             String sql = "select 1 from dual";
-            String sql1 = "select 1 from persons";
-            Statement statement = conn.createStatement();
-            boolean execute = statement.execute(sql1);
-            System.out.println("  执行sql:"+execute);
+            java.sql.Statement statement = conn.createStatement();
+            boolean execute = statement.execute(sql);
+            System.out.println("execute sql:"+execute);
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            close();
         }
     }
 
@@ -42,22 +41,32 @@ public class Connector {
      * 获取数据库连接
      * @return
      */
-    public static Connection getConnection(){
-        Connection conn = null;
-        String className = "oracle.jdbc.driver.OracleDriver";
-        String url = "jdbc:oracle:thin:@localhost:1521:orcl";
-        String name = "oracle2018";
-        String pwd = "orcl2018";
-        try {
-            Class.forName(className);
-            conn = DriverManager.getConnection(url,name,pwd);
-            System.out.println("  获取连接  :"+conn);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public static Connection getConnection() throws ClassNotFoundException, SQLException{
+        if (null != conn) return conn;
+        Class.forName(className);
+        conn = DriverManager.getConnection(url, name, pwd);
+        System.out.println("get jdbc connection:"+ conn);
         return conn;
     }
+
+    public static void close(){
+        try {
+            if (null != conn) conn.close();
+        } catch (SQLException e) {
+            System.out.println("close connection failed ...");
+            e.printStackTrace();
+        }
+        System.out.println("connection closed");
+    }
+
+
+    public static void close(Connection connection){
+        try {
+            connection.close();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
 
 }
